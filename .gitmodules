@@ -4,3 +4,6 @@
 [submodule "tmux-config"]
 	path = tmux-config
 	url = https://github.com/r-darwish/tmux-config.git
+[submodule "fasd"]
+	path = fasd
+	url = https://github.com/clvv/fasd.git

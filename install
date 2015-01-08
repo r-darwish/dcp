@@ -8,6 +8,7 @@ _ZSHRC = os.path.expanduser('~/.zshrc')
 _TMUX = os.path.expanduser('~/.tmux.conf')
 _VIM = os.path.expanduser('~/.vimrc')
 _VIM_LOCAL = os.path.expanduser('~/.vimrc.local')
+_FASD = os.path.expanduser('~/bin/fasd')
 
 
 def _read(filename):
@@ -44,6 +45,11 @@ def main():
         print("SPF13 exists")
     else:
         subprocess.check_call('curl http://j.mp/spf13-vim3 -L -o - | sh', shell=True)
+
+    if os.path.isfile(_FASD):
+        print("FASD exists")
+    else:
+        os.symlink(os.path.join(_DIR, 'fasd', 'fasd'), _FASD)
 
 
 if __name__ == "__main__":
