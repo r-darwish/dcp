@@ -61,7 +61,7 @@ def main():
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
 
     if not os.path.isfile(_VIM):
-        subprocess.check_call('curl https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim -o .vimrc', shell=True)
+        subprocess.check_call('curl https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim -o ~/.vimrc', shell=True)
 
 
 if __name__ == "__main__":
