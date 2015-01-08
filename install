@@ -19,7 +19,6 @@ _GITCONFIG = _home('.gitconfig')
 _ZSHRC = _home('.zshrc')
 _TMUX = _home('.tmux.conf')
 _VIM = _home('.vimrc')
-_VIM_LOCAL = _home('.vimrc.local')
 _LOCAL_BIN = _home('bin')
 _FASD = os.path.join(_LOCAL_BIN, 'fasd')
 _GLOBAL_GITIGNORE = _home('.gitignore_global')
@@ -47,10 +46,6 @@ def main():
     if not os.path.isfile(_TMUX):
         print("Setting TMUX config")
         os.symlink(_dcp_dir('tmux-config', '.tmux.conf'), _TMUX)
-
-    if not os.path.isfile(_VIM_LOCAL):
-        print("Setting VIM local file")
-        os.symlink(_dcp_dir('.vimrc.local'), _VIM_LOCAL)
 
     if not os.path.isdir(_LOCAL_BIN):
         print("Creating the local bin directory")
