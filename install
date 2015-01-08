@@ -25,31 +25,25 @@ def _write(filename, content):
 def main():
     subprocess.check_call('git submodule update --init --recursive', cwd=_DIR, shell=True)
 
-    if os.path.isfile(_ZSHRC):
-        print("ZSH configuration exists")
-    else:
+    if not os.path.isfile(_ZSHRC):
+        print("Setting ZSHRC")
         template = _read(os.path.join(_DIR, 'oh-my-zsh', 'templates', 'zshrc.zsh-template'))
         template = template.replace('export ZSH=$HOME/.oh-my-zsh', 'export ZSH="{0}"'.format(os.path.join(_DIR, 'oh-my-zsh')))
         _write(_ZSHRC, template)
 
-    if os.path.isfile(_TMUX):
-        print("TMUX configuration exists")
-    else:
+    if not os.path.isfile(_TMUX):
+        print("Setting TMUX config")
         os.symlink(os.path.join(_DIR, 'tmux-config', '.tmux.conf'), _TMUX)
 
-    if os.path.isfile(_VIM_LOCAL):
-        print("VIM local configuration exists")
-    else:
+    if not os.path.isfile(_VIM_LOCAL):
+        print("Setting VIM local file")
         os.symlink(os.path.join(_DIR, '.vimrc.local'), _VIM_LOCAL)
 
-    if os.path.isfile(_VIM):
-        print("SPF13 exists")
-    else:
+    if not os.path.isfile(_VIM):
         subprocess.check_call('curl http://j.mp/spf13-vim3 -L -o - | sh', shell=True)
 
-    if os.path.isfile(_FASD):
-        print("FASD exists")
-    else:
+    if not os.path.isfile(_FASD):
+        print("Setting FASD")
         os.symlink(os.path.join(_DIR, 'fasd', 'fasd'), _FASD)
 
     subprocess.check_call(['git', 'config', '--global', 'include.path', os.path.join(_DIR, 'gitconfig')])
