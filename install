@@ -10,6 +10,7 @@ _VIM = os.path.expanduser('~/.vimrc')
 _VIM_LOCAL = os.path.expanduser('~/.vimrc.local')
 _FASD = os.path.expanduser('~/bin/fasd')
 _GITCONFIG = os.path.expanduser('~/.gitconfig')
+_GLOBAL_GITIGNORE = os.path.expanduser('~/.gitignore_global')
 
 
 def _read(filename):
@@ -45,6 +46,10 @@ def main():
     if not os.path.isfile(_FASD):
         print("Setting FASD")
         os.symlink(os.path.join(_DIR, 'fasd', 'fasd'), _FASD)
+
+    if not os.path.isfile(_GLOBAL_GITIGNORE):
+        print("Setting global git ignore")
+        os.symlink(os.path.join(_DIR, 'gitignore_global'), _GLOBAL_GITIGNORE)
 
     subprocess.check_call(['git', 'config', '--global', 'include.path', os.path.join(_DIR, 'gitconfig')])
 
