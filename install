@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+import os
+import subprocess
+import sys
+
+_DIR = os.path.dirname(os.path.abspath(__file__))
+_ZSHRC = os.path.expanduser('~/.zshrc')
+_TMUX = os.path.expanduser('~/.tmux.conf')
+_VIM = os.path.expanduser('~/.vimrc')
+_VIM_LOCAL = os.path.expanduser('~/.vimrc.local')
+
+
+def _read(filename):
+    with open(filename, 'r') as f:
+        return f.read()
+
+
+def _write(filename, content):
+    with open(filename, 'w') as f:
+        f.write(content)
+
+
+def main():
+    if os.path.isfile(_ZSHRC):
+        print("ZSH configuration exists")
+    else:
+        template = _read(os.path.join(_DIR, 'oh-my-zsh', 'templates', 'zshrc.zsh-template'))
+        template = template.replace('export ZSH=$HOME/.oh-my-zsh', 'export ZSH="{0}"'.format(os.path.join(_DIR, 'oh-my-zsh')))
+        _write(_ZSHRC, template)
+
+    if os.path.isfile(_TMUX):
+        print("TMUX configuration exists")
+    else:
+        os.symlink(os.path.join(_DIR, 'tmux-config', '.tmux.conf'), _TMUX)
+
+    if os.path.isfile(_VIM):
+        print("SPF13 exists")
+    else:
+        subprocess.check_call('curl http://j.mp/spf13-vim3 -L -o - | sh', shell=True)
+
+    if os.path.isfile(_VIM_LOCAL):
+        print("VIM local configuration exists")
+    else:
+        os.symlink(os.path.join(_DIR, '.vimrc.local'), _VIM_LOCAL)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
