@@ -9,6 +9,7 @@ _TMUX = os.path.expanduser('~/.tmux.conf')
 _VIM = os.path.expanduser('~/.vimrc')
 _VIM_LOCAL = os.path.expanduser('~/.vimrc.local')
 _FASD = os.path.expanduser('~/bin/fasd')
+_GITCONFIG = os.path.expanduser('~/.gitconfig')
 
 
 def _read(filename):
@@ -50,6 +51,8 @@ def main():
         print("FASD exists")
     else:
         os.symlink(os.path.join(_DIR, 'fasd', 'fasd'), _FASD)
+
+    subprocess.check_call(['git', 'config', '--global', 'include.path', os.path.join(_DIR, 'gitconfig')])
 
 
 if __name__ == "__main__":

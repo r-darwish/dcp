@@ -1,0 +1,11 @@
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    di = diff
+    ss = stash save
+    sp = stash pop
+    st = status
+[merge]
+	conflictstyle = diff3
+[push]
+	default = simple
