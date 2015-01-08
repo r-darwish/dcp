@@ -21,6 +21,8 @@ def _write(filename, content):
 
 
 def main():
+    subprocess.check_call('git submodule update --init --recursive', cwd=_DIR, shell=True)
+
     if os.path.isfile(_ZSHRC):
         print("ZSH configuration exists")
     else:
