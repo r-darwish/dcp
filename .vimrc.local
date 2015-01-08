@@ -1,3 +1,4 @@
 set nofoldenable
 set relativenumber
 colorscheme hybrid
+set nospell
