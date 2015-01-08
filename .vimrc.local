@@ -2,3 +2,5 @@ set nofoldenable
 set relativenumber
 colorscheme hybrid
 set nospell
+let g:autoclose_on = 0
+let g:indent_guides_enable_on_vim_startup = 0
