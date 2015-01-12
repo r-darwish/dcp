@@ -12,7 +12,7 @@ _DCP_DIR = os.path.dirname(os.path.abspath(__file__))
 
 _ZSH_PLUGINS = {
     'git', 'fasd', 'tmux', 'virtualenv', 'pushbullet', 'zsh-syntax-highlighting', 'colored-man',
-    'virtualenvwrapper', 'common-aliases', 'pip', 'history-substring-search', 'python'}
+    'virtualenvwrapper', 'common-aliases', 'pip', 'history-substring-search', 'python', 'slash'}
 _OS_PLUGINS = {
     'osx': {'osx', 'brew', 'brew-cask'},
     'ubuntu': {'debian'},
