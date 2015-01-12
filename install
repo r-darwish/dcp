@@ -10,6 +10,14 @@ def _home(*args):
 
 _DCP_DIR = os.path.dirname(os.path.abspath(__file__))
 
+_ZSH_PLUGINS = {
+    'git', 'fasd', 'tmux', 'virtualenv', 'pushbullet', 'zsh-syntax-highlighting', 'colored-man',
+    'virtualenvwrapper', 'common-aliases', 'pip', 'history-substring-search', 'python'}
+_OS_PLUGINS = {
+    'osx': {'osx', 'brew', 'brew-cask'},
+    'ubuntu': {'debian'},
+}
+
 
 def _dcp_dir(*args):
     return os.path.join(_DCP_DIR, *args)
@@ -22,6 +30,20 @@ _VIM = _home('.vimrc')
 _LOCAL_BIN = _home('bin')
 _FASD = os.path.join(_LOCAL_BIN, 'fasd')
 _GLOBAL_GITIGNORE = _home('.gitignore_global')
+
+
+def _get_os():
+    if sys.platform == "darwin":
+        return "osx"
+
+    if sys.platform in ("cygwin", "win32"):
+        return "windows"
+
+    if sys.platform.startswith("linux"):
+        version = os.uname()[3]
+
+        if "Ubuntu" in version:
+            return "ubuntu"
 
 
 def _read(filename):
@@ -47,6 +69,11 @@ def main():
         print("Setting ZSHRC")
         template = _read(_dcp_dir('oh-my-zsh', 'templates', 'zshrc.zsh-template'))
         template = template.replace('export ZSH=$HOME/.oh-my-zsh', 'export ZSH="{0}"'.format(_dcp_dir('oh-my-zsh')))
+
+        plugins = set(_ZSH_PLUGINS)
+        plugins.update(_OS_PLUGINS.get(_get_os(), set()))
+        template = template.replace('{{PLUGINS}}', 'plugins=({0})'.format(' '.join(plugins)))
+
         _write(_ZSHRC, template)
 
     _symlink(_dcp_dir('tmux-config', '.tmux.conf'), _TMUX)
@@ -61,7 +88,8 @@ def main():
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
 
     if not os.path.isfile(_VIM):
-        subprocess.check_call('curl https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim -o ~/.vimrc', shell=True)
+        subprocess.check_call(
+            'curl https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim -o ~/.vimrc', shell=True)
 
 
 if __name__ == "__main__":
