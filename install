@@ -17,6 +17,7 @@ _OS_PLUGINS = {
     'osx': {'osx', 'brew', 'brew-cask'},
     'ubuntu': {'debian'},
 }
+_BINARY_PLUGINS = ['docker', 'vagrant']
 
 
 def _dcp_dir(*args):
@@ -62,6 +63,11 @@ def _symlink(source, dest):
         os.symlink(source, dest)
 
 
+def _has_bin(binary):
+    which = subprocess.Popen('which ' + binary, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    return 0 == which.wait()
+
+
 def main():
     subprocess.check_call('git submodule update --init --recursive', cwd=_DCP_DIR, shell=True)
 
@@ -72,6 +78,11 @@ def main():
 
         plugins = set(_ZSH_PLUGINS)
         plugins.update(_OS_PLUGINS.get(_get_os(), set()))
+        
+        for binary in _BINARY_PLUGINS:
+            if _has_bin(binary):
+                plugins.add(binary)
+
         template = template.replace('{{PLUGINS}}', 'plugins=({0})'.format(' '.join(plugins)))
 
         _write(_ZSHRC, template)
