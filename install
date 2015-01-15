@@ -16,6 +16,7 @@ _ZSH_PLUGINS = {
 _OS_PLUGINS = {
     'osx': {'osx', 'brew', 'brew-cask'},
     'ubuntu': {'debian'},
+    'centos': {'yum', 'systemd'}
 }
 _BINARY_PLUGINS = ['docker', 'vagrant']
 
@@ -41,10 +42,13 @@ def _get_os():
         return "windows"
 
     if sys.platform.startswith("linux"):
-        version = os.uname()[3]
+        uname = os.uname()
 
-        if "Ubuntu" in version:
+        if "Ubuntu" in uname[3]:
             return "ubuntu"
+
+        if ".el7" in uname[2] or ".el6" in uname[2]:
+            return "centos"
 
 
 def _read(filename):
