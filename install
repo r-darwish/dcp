@@ -10,13 +10,13 @@ def _home(*args):
 
 _DCP_DIR = os.path.dirname(os.path.abspath(__file__))
 
-_ZSH_PLUGINS = {
+_ZSH_PLUGINS = set([
     'git', 'fasd', 'tmux', 'virtualenv', 'pushbullet', 'zsh-syntax-highlighting', 'colored-man',
-    'virtualenvwrapper', 'common-aliases', 'pip', 'history-substring-search', 'python', 'slash'}
+    'virtualenvwrapper', 'common-aliases', 'pip', 'history-substring-search', 'python', 'slash'])
 _OS_PLUGINS = {
-    'osx': {'osx', 'brew', 'brew-cask'},
-    'ubuntu': {'debian'},
-    'centos': {'yum', 'systemd'}
+    'osx': set(['osx', 'brew', 'brew-cask']),
+    'ubuntu': set(['debian']),
+    'centos': set(['yum', 'systemd'])
 }
 _BINARY_PLUGINS = ['docker', 'vagrant']
 
@@ -82,7 +82,7 @@ def main():
 
         plugins = set(_ZSH_PLUGINS)
         plugins.update(_OS_PLUGINS.get(_get_os(), set()))
-        
+
         for binary in _BINARY_PLUGINS:
             if _has_bin(binary):
                 plugins.add(binary)
