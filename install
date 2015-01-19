@@ -18,7 +18,7 @@ _OS_PLUGINS = {
     'ubuntu': set(['debian']),
     'centos': set(['yum', 'systemd'])
 }
-_BINARY_PLUGINS = ['docker', 'vagrant']
+_BINARY_PLUGINS = ['docker', 'vagrant', 'pyenv']
 
 
 def _dcp_dir(*args):
