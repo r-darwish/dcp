@@ -12,7 +12,7 @@ su - vagrant -c /vagrant/install
 SCRIPT
 
 $centos = <<SCRIPT
-yum -qy install git zsh tmux python-virtualenv
+yum -qy install git zsh tmux python-virtualenv python-setuptools
 easy_install -U pip
 pip install virtualenvwrapper bpython
 chsh -s /bin/zsh vagrant
@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "centos" do |centos|
-    centos.vm.box = "chef/centos-7.0"
+    centos.vm.box = "chef/centos-6.5"
     centos.vm.provision "shell", inline: $centos
   end
 end
