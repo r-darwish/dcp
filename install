@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+import platform
 
 
 def _home(*args):
@@ -42,13 +43,7 @@ def _get_os():
         return "windows"
 
     if sys.platform.startswith("linux"):
-        uname = os.uname()
-
-        if "Ubuntu" in uname[3]:
-            return "ubuntu"
-
-        if ".el7" in uname[2] or ".el6" in uname[2]:
-            return "centos"
+        return platform.dist()[0].lower()
 
 
 def _read(filename):
