@@ -1,3 +1,5 @@
+[user]
+    signingkey = 929D1C60
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr by %an)%Creset' --abbrev-commit --date=relative --all
