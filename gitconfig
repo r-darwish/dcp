@@ -6,7 +6,7 @@
     di = diff
     ss = stash save
     sp = stash pop
-    st = status
+    st = status -sb
 [merge]
 	conflictstyle = diff3
 [push]
