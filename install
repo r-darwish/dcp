@@ -17,7 +17,8 @@ _ZSH_PLUGINS = set([
 _OS_PLUGINS = {
     'osx': set(['osx', 'brew', 'brew-cask']),
     'ubuntu': set(['debian']),
-    'centos': set(['yum', 'systemd'])
+    'centos': set(['yum', 'systemd']),
+    'arch': set(['archlinux', 'systemd'])
 }
 _BINARY_PLUGINS = ['docker', 'vagrant', 'pyenv']
 
