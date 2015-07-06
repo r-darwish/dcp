@@ -7,3 +7,6 @@
 [submodule "fasd"]
 	path = fasd
 	url = https://github.com/clvv/fasd.git
+[submodule "vim"]
+	path = vim
+	url = https://github.com/r-darwish/vim-config.git

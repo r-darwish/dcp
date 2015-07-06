@@ -32,7 +32,8 @@ _ZSHRC = _home('.zshrc')
 _TMUX = _home('.tmux.conf')
 _PYLINTRC = _home('.pylintrc')
 _TMUX_OSX = _home('.tmux-osx.conf')
-_VIM = _home('.vimrc')
+_VIM = _home('.vim')
+_VIMRC = _home('.vimrc')
 _LOCAL_BIN = _home('bin')
 _FASD = os.path.join(_LOCAL_BIN, 'fasd')
 _GLOBAL_GITIGNORE = _home('.gitignore_global')
@@ -102,9 +103,8 @@ def main():
 
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
 
-    if not os.path.isfile(_VIM):
-        subprocess.check_call(
-            'curl https://raw.githubusercontent.com/amix/vimrc/master/vimrcs/basic.vim -o ~/.vimrc', shell=True)
+    _symlink(_dcp_dir('vim'), _VIM)
+    _symlink(_dcp_dir('vim', '.vimrc'), _VIMRC)
 
 
 if __name__ == "__main__":
