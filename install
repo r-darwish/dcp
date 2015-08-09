@@ -2,7 +2,6 @@
 import os
 import subprocess
 import sys
-import platform
 
 
 def _home(*args):
@@ -10,17 +9,6 @@ def _home(*args):
 
 
 _DCP_DIR = os.path.dirname(os.path.abspath(__file__))
-
-_ZSH_PLUGINS = set([
-    'git', 'fasd', 'tmux', 'virtualenv', 'pushbullet', 'zsh-syntax-highlighting', 'colored-man',
-    'common-aliases', 'pip', 'history-substring-search', 'python', 'slash', 'httpie'])
-_OS_PLUGINS = {
-    'osx': set(['osx', 'brew', 'brew-cask']),
-    'ubuntu': set(['debian']),
-    'centos': set(['yum', 'systemd']),
-    'arch': set(['archlinux', 'systemd'])
-}
-_BINARY_PLUGINS = ['docker', 'vagrant', 'pyenv']
 
 
 def _dcp_dir(*args):
@@ -34,77 +22,29 @@ _PYLINTRC = _home('.pylintrc')
 _TMUX_OSX = _home('.tmux-osx.conf')
 _VIM = _home('.vim')
 _VIMRC = _home('.vimrc')
-_LOCAL_BIN = _home('bin')
-_FASD = os.path.join(_LOCAL_BIN, 'fasd')
+_FISH = _home('.config/fish')
 _GLOBAL_GITIGNORE = _home('.gitignore_global')
 
 
-def _get_os():
-    if sys.platform == "darwin":
-        return "osx"
-
-    if sys.platform in ("cygwin", "win32"):
-        return "windows"
-
-    if sys.platform.startswith("linux"):
-        return platform.dist()[0].lower()
-
-
-def _read(filename):
-    with open(filename, 'r') as f:
-        return f.read()
-
-
-def _write(filename, content):
-    with open(filename, 'w') as f:
-        f.write(content)
-
-
 def _symlink(source, dest):
-    if not os.path.isfile(dest):
+    if not os.path.exists(dest):
         print("Linking {0} -> {1}".format(source, dest))
         os.symlink(source, dest)
-
-
-def _has_bin(binary):
-    which = subprocess.Popen('which ' + binary, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    return 0 == which.wait()
 
 
 def main():
     subprocess.check_call('git submodule update --init --recursive', cwd=_DCP_DIR, shell=True)
 
-    if not os.path.isfile(_ZSHRC):
-        print("Setting ZSHRC")
-        template = _read(_dcp_dir('oh-my-zsh', 'templates', 'zshrc.zsh-template'))
-        template = template.replace('export ZSH=$HOME/.oh-my-zsh', 'export ZSH="{0}"'.format(_dcp_dir('oh-my-zsh')))
-
-        plugins = set(_ZSH_PLUGINS)
-        plugins.update(_OS_PLUGINS.get(_get_os(), set()))
-
-        for binary in _BINARY_PLUGINS:
-            if _has_bin(binary):
-                plugins.add(binary)
-
-        template = template.replace('{{PLUGINS}}', 'plugins=({0})'.format(' '.join(plugins)))
-
-        _write(_ZSHRC, template)
-
     _symlink(_dcp_dir('tmux-config', '.tmux.conf'), _TMUX)
     _symlink(_dcp_dir('tmux-config', '.tmux-osx.conf'), _TMUX_OSX)
     _symlink(_dcp_dir('.pylintrc'), _PYLINTRC)
-
-    if not os.path.isdir(_LOCAL_BIN):
-        print("Creating the local bin directory")
-        os.mkdir(_LOCAL_BIN)
-
-    _symlink(_dcp_dir('fasd', 'fasd'), _FASD)
+    _symlink(_dcp_dir('fish-config'), _FISH)
     _symlink(_dcp_dir('gitignore_global'), _GLOBAL_GITIGNORE)
+    _symlink(_dcp_dir('vim'), _VIM)
+    _symlink(_dcp_dir('vim', '.vimrc'), _VIMRC)
 
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
 
-    _symlink(_dcp_dir('vim'), _VIM)
-    _symlink(_dcp_dir('vim', '.vimrc'), _VIMRC)
 
 
 if __name__ == "__main__":

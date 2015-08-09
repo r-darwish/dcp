@@ -1,12 +1,9 @@
-[submodule "oh-my-zsh"]
-	path = oh-my-zsh
-	url = https://github.com/r-darwish/oh-my-zsh.git
 [submodule "tmux-config"]
 	path = tmux-config
 	url = https://github.com/r-darwish/tmux-config.git
-[submodule "fasd"]
-	path = fasd
-	url = https://github.com/clvv/fasd.git
 [submodule "vim"]
 	path = vim
 	url = https://github.com/r-darwish/vim-config.git
+[submodule "fish-config"]
+	path = fish-config
+	url = https://github.com/r-darwish/fish-config.git
