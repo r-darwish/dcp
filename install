@@ -22,7 +22,6 @@ _PYLINTRC = _home('.pylintrc')
 _TMUX_OSX = _home('.tmux-osx.conf')
 _VIM = _home('.vim')
 _VIMRC = _home('.vimrc')
-_FISH = _home('.config/fish')
 _GLOBAL_GITIGNORE = _home('.gitignore_global')
 
 
@@ -38,10 +37,10 @@ def main():
     _symlink(_dcp_dir('tmux-config', '.tmux.conf'), _TMUX)
     _symlink(_dcp_dir('tmux-config', '.tmux-osx.conf'), _TMUX_OSX)
     _symlink(_dcp_dir('.pylintrc'), _PYLINTRC)
-    _symlink(_dcp_dir('fish-config'), _FISH)
     _symlink(_dcp_dir('gitignore_global'), _GLOBAL_GITIGNORE)
     _symlink(_dcp_dir('vim'), _VIM)
     _symlink(_dcp_dir('vim', '.vimrc'), _VIMRC)
+    _symlink(_dcp_dir('.zshrc'), _ZSHRC)
 
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
 

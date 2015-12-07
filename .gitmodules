@@ -4,6 +4,6 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/r-darwish/vim-config.git
-[submodule "fish-config"]
-	path = fish-config
-	url = https://github.com/r-darwish/fish-config.git
+[submodule "zgen"]
+	path = zgen
+	url = https://github.com/tarjoilija/zgen.git
