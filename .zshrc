@@ -17,6 +17,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/pyenv
     zgen oh-my-zsh plugins/tmux
     zgen oh-my-zsh plugins/systemd
+    zgen oh-my-zsh plugins/ssh-agent
     zgen load zsh-users/zsh-syntax-highlighting
 
     # completions
