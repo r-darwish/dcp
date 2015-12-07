@@ -19,13 +19,13 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/git-flow
     zgen oh-my-zsh plugins/sudo
-    zgen oh-my-zsh plugins/archlinux
     zgen oh-my-zsh plugins/fasd
     zgen oh-my-zsh plugins/virtualenv
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/debian
     zgen oh-my-zsh plugins/pyenv
     zgen oh-my-zsh plugins/tmux
+    zgen oh-my-zsh plugins/systemd
     zgen load zsh-users/zsh-syntax-highlighting
 
     # completions
@@ -37,6 +37,8 @@ fi
 
 alias nd='local t=$?; pb push -t "$(hostname -s)" "Process exited: $t"; unset t'
 alias fgnd='fg ; nd'
+alias lenv='activate .env'
+alias pac=pacaur
 
 function _fgnd() {
     BUFFER="fgnd"
