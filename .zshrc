@@ -25,6 +25,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/debian
     zgen oh-my-zsh plugins/pyenv
+    zgen oh-my-zsh plugins/tmux
     zgen load zsh-users/zsh-syntax-highlighting
 
     # completions
@@ -33,6 +34,18 @@ if ! zgen saved; then
     # save all to init script
     zgen save
 fi
+
+alias nd='local t=$?; pb push -t "$(hostname -s)" "Process exited: $t"; unset t'
+alias fgnd='fg ; nd'
+
+function _fgnd() {
+    BUFFER="fgnd"
+    zle accept-line
+}
+
+zle -N _fgnd
+
+bindkey "^f" _fgnd
 
 function activate() {
    source $1/bin/activate
