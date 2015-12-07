@@ -1,12 +1,3 @@
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[command]='fg=39'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=39'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=39'
-ZSH_HIGHLIGHT_STYLES[activate]='fg=39'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=226'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=226'
-
 source "${HOME}/.dcp/zgen/zgen.zsh"
 
 # check if there's no init script

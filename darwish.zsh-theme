@@ -1,3 +1,15 @@
+local light_blue=39
+local orange=208
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]="fg=$orange"
+ZSH_HIGHLIGHT_STYLES[builtin]="fg=$orange"
+ZSH_HIGHLIGHT_STYLES[alias]="fg=$orange"
+ZSH_HIGHLIGHT_STYLES[activate]="fg=$orange"
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=226'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=226'
+
 function t_hostname() {
     if [[ -n $SSH_CONNECTION ]]; then
       echo "%{$fg_bold[yellow]%}$(hostname -s)"
@@ -6,7 +18,7 @@ function t_hostname() {
     fi
 }
 
-PROMPT='%{$fg_bold[red]%}%n $(t_hostname) %{$fg[cyan]%}%c $(virtualenv_prompt_info)$(git_prompt_info)$(git_remote_status)%{$reset_color%}'
+PROMPT='%{$fg_bold[red]%}%n $(t_hostname) %F{${light_blue}}%c $(virtualenv_prompt_info)$(git_prompt_info)$(git_remote_status)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
