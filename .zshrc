@@ -22,6 +22,9 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/archlinux
     zgen oh-my-zsh plugins/fasd
     zgen oh-my-zsh plugins/virtualenv
+    zgen oh-my-zsh plugins/colored-man-pages
+    zgen oh-my-zsh plugins/debian
+    zgen oh-my-zsh plugins/pyenv
     zgen load zsh-users/zsh-syntax-highlighting
 
     # completions
