@@ -30,6 +30,7 @@ alias nd='local t=$?; pb push -t "$(hostname -s)" "Process exited: $t"; unset t'
 alias fgnd='fg ; nd'
 alias lenv='activate .env'
 alias pac=pacaur
+alias jc=journalctl
 
 function _fgnd() {
     BUFFER="fgnd"
