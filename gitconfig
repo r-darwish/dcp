@@ -15,5 +15,5 @@
     rebase = true
 [color "diff"]
     old  = red bold
-    new  = blue bold
+    new  = green bold
     frag = magenta bold
