@@ -18,6 +18,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/tmux
     zgen oh-my-zsh plugins/systemd
     zgen oh-my-zsh plugins/ssh-agent
+    zgen oh-my-zsh plugins/common-aliases
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load chrissicool/zsh-256color
 
