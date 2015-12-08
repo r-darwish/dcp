@@ -19,6 +19,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/systemd
     zgen oh-my-zsh plugins/ssh-agent
     zgen load zsh-users/zsh-syntax-highlighting
+    zgen load chrissicool/zsh-256color
 
     # completions
     zgen load zsh-users/zsh-completions src
