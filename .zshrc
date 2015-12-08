@@ -8,7 +8,7 @@ if ! zgen saved; then
 
     # plugins
     zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/git-flow
+    zgen oh-my-zsh plugins/git-flow-avh
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/fasd
     zgen oh-my-zsh plugins/virtualenv
@@ -36,6 +36,7 @@ alias fgnd='fg ; nd'
 alias lenv='activate .env'
 alias pac=pacaur
 alias jc=journalctl
+alias gf=git-flow
 
 function _fgnd() {
     BUFFER="fgnd"
