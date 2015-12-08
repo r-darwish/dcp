@@ -12,9 +12,9 @@ ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=226'
 
 function t_hostname() {
     if [[ -n $SSH_CONNECTION ]]; then
-      echo "%{$fg_bold[yellow]%}$(hostname -s)"
+      echo "%{$fg_bold[yellow]%}%m"
     else
-      echo "%{$fg_bold[green]%}$(hostname -s)"
+      echo "%{$fg_bold[green]%}%m"
     fi
 }
 
