@@ -29,6 +29,8 @@ if ! zgen saved; then
     zgen save
 fi
 
+unset zle_bracketed_paste
+
 alias nd='local t=$?; pb push -t "$(hostname -s)" "Process exited: $t"; unset t'
 alias fgnd='fg ; nd'
 alias lenv='activate .env'
