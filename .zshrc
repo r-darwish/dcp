@@ -55,3 +55,5 @@ source "${HOME}/.dcp/darwish.zsh-theme"
 if [ -f "${HOME}/.local.zsh" ]; then
     source "${HOME}/.local.zsh"
 fi
+
+export EDITOR="vim"
