@@ -57,3 +57,10 @@ if [ -f "${HOME}/.local.zsh" ]; then
 fi
 
 export EDITOR="vim"
+
+bindkey "^[[1;9C" forward-word
+bindkey "^[[1;9D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
