@@ -19,6 +19,7 @@ function t_hostname() {
 }
 
 PROMPT='%{$fg_bold[red]%}%n $(t_hostname) %F{${light_blue}}%c $(virtualenv_prompt_info)$(git_prompt_info)$(git_remote_status)%{$reset_color%}'
+RPROMPT="%F{${light_blue}}%~%{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
