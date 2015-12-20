@@ -1,9 +1,12 @@
 [submodule "tmux-config"]
 	path = tmux-config
 	url = https://github.com/r-darwish/tmux-config.git
+	branch = master
 [submodule "vim"]
 	path = vim
 	url = https://github.com/r-darwish/vim-config.git
+	branch = master
 [submodule "zgen"]
 	path = zgen
 	url = https://github.com/tarjoilija/zgen.git
+	branch = master
