@@ -41,6 +41,8 @@ def main():
     _symlink(_dcp_dir('vim'), _VIM)
     _symlink(_dcp_dir('vim', '.vimrc'), _VIMRC)
     _symlink(_dcp_dir('.zshrc'), _ZSHRC)
+    _symlink(_dcp_dir('.spacemacs'), _home('.spacemacs'))
+    _symlink(_dcp_dir('spacemacs'), _home('.emacs.d'))
 
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
 
