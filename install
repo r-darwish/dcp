@@ -34,8 +34,8 @@ def _symlink(source, dest):
 def main():
     subprocess.check_call('git submodule update --init --recursive', cwd=_DCP_DIR, shell=True)
 
-    _symlink(_dcp_dir('tmux-config', '.tmux.conf'), _TMUX)
-    _symlink(_dcp_dir('tmux-config', '.tmux-osx.conf'), _TMUX_OSX)
+    _symlink(_dcp_dir('.tmux.conf'), _TMUX)
+    _symlink(_dcp_dir('.tmux-osx.conf'), _TMUX_OSX)
     _symlink(_dcp_dir('.pylintrc'), _PYLINTRC)
     _symlink(_dcp_dir('gitignore_global'), _GLOBAL_GITIGNORE)
     _symlink(_dcp_dir('vim'), _VIM)
