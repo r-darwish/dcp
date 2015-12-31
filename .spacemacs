@@ -204,7 +204,6 @@ layers configuration. You are free to put any user code."
   (let ((pyenv-pylint "/usr/local/opt/pyenv/versions/3.4.3/bin/pylint"))
     (if (file-exists-p pyenv-pylint)
         (setq-default flycheck-python-pylint-executable pyenv-pylint)))
-  (setq-default evil-escape-key-sequence "jj")
   (setq-default yas-snippet-dirs
         '("~/.emacs.d/snippets"
           "~/.dcp/yasnippets"))
