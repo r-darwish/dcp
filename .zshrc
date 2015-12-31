@@ -1,3 +1,12 @@
+if [[ "$TERM" == "dumb" ]]
+then
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    PS1='$ '
+    return
+fi
+
 source "${HOME}/.dcp/zgen/zgen.zsh"
 
 # check if there's no init script
