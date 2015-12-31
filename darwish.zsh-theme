@@ -3,30 +3,62 @@ local orange=208
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[command]="fg=$orange"
-ZSH_HIGHLIGHT_STYLES[builtin]="fg=$orange"
-ZSH_HIGHLIGHT_STYLES[alias]="fg=$orange"
-ZSH_HIGHLIGHT_STYLES[activate]="fg=$orange"
+ZSH_HIGHLIGHT_STYLES[command]="fg=$light_blue"
+ZSH_HIGHLIGHT_STYLES[builtin]="fg=$light_blue"
+ZSH_HIGHLIGHT_STYLES[alias]="fg=$light_blue"
+ZSH_HIGHLIGHT_STYLES[activate]="fg=$light_blue"
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=226'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=226'
 
-function t_hostname() {
-    if [[ -n $SSH_CONNECTION ]]; then
-      echo "%{$fg_bold[yellow]%}%m"
-    else
-      echo "%{$fg_bold[green]%}%m"
-    fi
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable git hg svn cvs
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr		'%F{green}✱'
+zstyle ':vcs_info:*' unstagedstr	'%F{red}✱'
+zstyle ':vcs_info:*' branchformat	'%b%%b%f:%B%F{yellow}%r'
+zstyle ':vcs_info:*' formats		'%F{magenta}(%F{white}%b%c%u%m%F{magenta}) '
+zstyle ':vcs_info:*' actionformats	'%F{magenta}(%F{white}%b%c%u%m%F{magenta}|%F{red}%a%F{magenta}) '
+zstyle ':vcs_info:*+set-message:*' hooks set-message
+zstyle ':vcs_info:*+no-vcs:*' hooks no-vcs
+
+typeset -gA vcs_prompt_chars
+vcs_prompt_chars=(
+    'git' '%F{red}⚡ '
+    'hg'  '%F{black}☿ '
+    'svn' '%F{blue}± '
+    'cvs' '%F{white}c '
+)
+
++vi-no-vcs() {
+    _prompt_char=''
 }
 
-PROMPT='%{$fg_bold[red]%}%n $(t_hostname) %F{${light_blue}}%c $(virtualenv_prompt_info)$(git_prompt_info)$(git_remote_status)%{$reset_color%}'
-RPROMPT="%F{${light_blue}}%~%{$reset_color%}"
++vi-set-message() {
+    _prompt_char=$vcs_prompt_chars[$vcs]
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{\e[38;5;214m%}⬇ %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{\e[38;5;214m%}⬆ %{$reset_color%}"
+    case ${vcs} in
+        git)
+            # Show +N/-N when your local branch is ahead-of or behind remote HEAD.
+            local ahead behind
+            local -a gitstatus
 
-ZSH_THEME_VIRTUALENV_PREFIX="%{$fg_bold[blue]%}py:(%{$fg_bold[yellow]%}"
-ZSH_THEME_VIRTUALENV_SUFFIX="%{$fg_bold[blue]%})%{$reset_color%} "
+            ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..@ 2>/dev/null)
+            (( $ahead )) && gitstatus+=( "%F{green}⇡${ahead}" )
+
+            behind=$(git rev-list --count @..${hook_com[branch]}@{upstream} 2>/dev/null)
+            (( $behind )) && gitstatus+=( "%F{red}⇣${behind}" )
+
+            (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F{white\}/:)gitstatus}%B"
+            ;;
+
+    esac
+}
+
+add-zsh-hook precmd vcs_info
+if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
+    PROMPT_HOST='%F{magenta}%n@%m%f'
+fi
+PROMPT='%B${PROMPT_HOST} %(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
+RPROMPT='%B%F{magenta}%~ %B${_prompt_char}${vcs_info_msg_0_}%F{blue}${_abbrev_pwd}'
+SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
