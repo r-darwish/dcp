@@ -27,7 +27,6 @@ values."
      'auto-completion
      ;; better-defaults
      'emacs-lisp
-     'semantic
      'python
      'html
      'git
@@ -211,8 +210,6 @@ layers configuration. You are free to put any user code."
                                                       '((delete-forward-char . ((:default . evil-mc-execute-default-call-with-count)))
                                                         (python-indent-dedent-line-backspace . ((:default . evil-mc-execute-default-call-with-count))))))
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
-  (eval-after-load "semantic"
-    (remove-hook 'python-mode-hook 'wisent-python-default-setup))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
