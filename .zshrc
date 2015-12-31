@@ -46,7 +46,7 @@ alias lenv='activate .env'
 alias pac=pacaur
 alias jc=journalctl
 alias gf=git-flow
-unalias ag
+unalias ag 2>/dev/null
 
 function _fgnd() {
     BUFFER="fgnd"
