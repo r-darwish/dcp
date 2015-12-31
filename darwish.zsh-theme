@@ -60,5 +60,5 @@ if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
     PROMPT_HOST='%F{magenta}%n@%m%f'
 fi
 PROMPT='%B${PROMPT_HOST} %(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
-RPROMPT='%B%F{magenta}%~ %B${_prompt_char}${vcs_info_msg_0_}%F{blue}${_abbrev_pwd}'
+RPROMPT='%B%F{magenta}%1~ %B${_prompt_char}${vcs_info_msg_0_}%F{blue}${_abbrev_pwd}'
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
