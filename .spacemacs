@@ -28,6 +28,7 @@ values."
      ;; better-defaults
      'emacs-lisp
      'python
+     'javascript
      'html
      'git
      'github
@@ -210,6 +211,7 @@ layers configuration. You are free to put any user code."
                                                       '((delete-forward-char . ((:default . evil-mc-execute-default-call-with-count)))
                                                         (python-indent-dedent-line-backspace . ((:default . evil-mc-execute-default-call-with-count))))))
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
+  (setq-default js2-basic-offset 2)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
