@@ -30,6 +30,7 @@ values."
      'python
      'html
      'git
+     'github
      'markdown
      'rust
      '(colors :variables colors-enable-nyan-cat-progress-bar (display-graphic-p))
