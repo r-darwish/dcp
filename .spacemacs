@@ -219,10 +219,10 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-idle-delay 0.0)
  '(custom-safe-themes
    (quote
     ("4904daa168519536b08ca4655d798ca0fb50d3545e6244cefcf7d0c7b338af7e" default)))
- '(global-auto-complete-mode t)
  '(global-git-gutter+-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
