@@ -212,6 +212,7 @@ layers configuration. You are free to put any user code."
                                                         (python-indent-dedent-line-backspace . ((:default . evil-mc-execute-default-call-with-count))))))
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
   (setq-default js2-basic-offset 2)
+  (setq-default css-indent-offset 2)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
