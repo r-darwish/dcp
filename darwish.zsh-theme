@@ -57,7 +57,8 @@ vcs_prompt_chars=(
 
 venv_prompt() {
     if [[ -z ${VIRTUAL_ENV} ]]; then return; fi
-    local venv_list=(${(s:/:)${VIRTUAL_ENV}})
+    local -a venv_list
+    venv_list=(${(s:/:)${VIRTUAL_ENV}})
     local venv=${venv_list[-1]}
     if [[ ${venv} == ".env" ]]; then
         venv=${venv_list[-2]}
