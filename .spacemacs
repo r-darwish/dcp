@@ -212,6 +212,8 @@ layers configuration. You are free to put any user code."
                 css-indent-offset 2
                 git-commit-summary-max-length 200
                 git-commit-fill-column 200)
+  (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
+  (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
