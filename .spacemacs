@@ -208,6 +208,7 @@ layers configuration. You are free to put any user code."
         '("~/.emacs.d/snippets"
           "~/.dcp/yasnippets"))
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
+  (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
   (setq-default js2-basic-offset 2
                 css-indent-offset 2
                 git-commit-summary-max-length 200
