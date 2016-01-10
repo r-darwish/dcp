@@ -5,3 +5,4 @@
 *.sublime-workspace
 tags
 .tern-port
+.dir-locals.el

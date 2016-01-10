@@ -201,9 +201,7 @@ user code."
 layers configuration. You are free to put any user code."
   (global-evil-mc-mode t)
   (global-flycheck-mode t)
-  (let ((pyenv-pylint "/usr/local/opt/pyenv/versions/3.4.3/bin/pylint"))
-    (if (file-exists-p pyenv-pylint)
-        (setq-default flycheck-python-pylint-executable pyenv-pylint)))
+  (add-hook 'python-mode-hook (pyvenv-tracking-mode t))
   (setq-default yas-snippet-dirs
         '("~/.emacs.d/snippets"
           "~/.dcp/yasnippets"))
