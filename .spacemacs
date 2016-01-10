@@ -47,7 +47,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(yaml-mode jinja2-mode systemd)
+   dotspacemacs-additional-packages '(yaml-mode jinja2-mode systemd google-this)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -213,6 +213,7 @@ layers configuration. You are free to put any user code."
                 git-commit-fill-column 200)
   (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
   (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
+  (spacemacs/set-leader-keys "x g s" 'google-this-noconfirm)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
