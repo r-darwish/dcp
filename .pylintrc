@@ -54,7 +54,7 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=R,import-error,missing-docstring,invalid-name
+disable=import-error,R,missing-docstring,invalid-name,broad-except
 [REPORTS]
 
 # Set the output format. Available formats are text, parseable, colorized, msvs
