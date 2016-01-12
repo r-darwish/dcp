@@ -25,6 +25,7 @@ values."
      ;; ----------------------------------------------------------------
      (if (string-equal system-type 'darwin) 'osx)
      'auto-completion
+     'spacemacs-ivy
      ;; better-defaults
      'emacs-lisp
      'python
