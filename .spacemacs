@@ -209,6 +209,7 @@ layers configuration. You are free to put any user code."
   (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
   (setq-default js2-basic-offset 2
                 css-indent-offset 2
+                c-basic-offset 4
                 git-commit-summary-max-length 200
                 git-commit-fill-column 200)
   (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
