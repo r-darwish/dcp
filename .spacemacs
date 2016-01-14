@@ -23,7 +23,6 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (if (string-equal system-type 'darwin) 'osx)
      'auto-completion
      'spacemacs-ivy
      ;; better-defaults
@@ -54,7 +53,9 @@ values."
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages t))
+   dotspacemacs-delete-orphan-packages t)
+  (if (string-equal system-type 'darwin)
+      (add-to-list 'dotspacemacs-configuration-layers 'osx)))
 
 (defun dotspacemacs/init ()
   "Initialization function.
