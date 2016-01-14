@@ -218,6 +218,12 @@ layers configuration. You are free to put any user code."
   (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
   (spacemacs/set-leader-keys "x g s" 'google-this-noconfirm)
   (spacemacs/set-leader-keys "h m" 'man)
+  (eval-after-load "git-link"
+    '(progn
+       (add-to-list 'git-link-remote-alist
+                    '("git.infinidat.com" git-link-gitlab))
+       (add-to-list 'git-link-commit-remote-alist
+                    '("git.infinidat.com" git-link-commit-gitlab))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
