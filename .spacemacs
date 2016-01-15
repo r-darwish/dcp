@@ -13,7 +13,7 @@ values."
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.dcp/layers/")
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -24,9 +24,10 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      'auto-completion
-     'spacemacs-ivy
      ;; better-defaults
      'emacs-lisp
+     'spacemacs-ivy
+     'darwish
      'python
      'javascript
      'html
@@ -47,7 +48,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(yaml-mode jinja2-mode systemd google-this)
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -201,30 +202,7 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  (global-evil-mc-mode t)
-  (global-flycheck-mode t)
-  (add-hook 'python-mode-hook (pyvenv-tracking-mode t))
-  (setq-default yas-snippet-dirs
-        '("~/.emacs.d/snippets"
-          "~/.dcp/yasnippets"))
-  (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
-  (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
-  (setq-default js2-basic-offset 2
-                css-indent-offset 2
-                c-basic-offset 4
-                git-commit-summary-max-length 200
-                git-commit-fill-column 200)
-  (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
-  (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
-  (spacemacs/set-leader-keys "x g s" 'google-this-noconfirm)
-  (spacemacs/set-leader-keys "h m" 'man)
-  (eval-after-load "git-link"
-    '(progn
-       (add-to-list 'git-link-remote-alist
-                    '("git.infinidat.com" git-link-gitlab))
-       (add-to-list 'git-link-commit-remote-alist
-                    '("git.infinidat.com" git-link-commit-gitlab))))
-)
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -233,13 +211,9 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-idle-delay 0.0)
  '(custom-safe-themes
    (quote
-    ("4904daa168519536b08ca4655d798ca0fb50d3545e6244cefcf7d0c7b338af7e" default)))
- '(global-git-gutter+-mode t)
- '(magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
- '(vc-follow-symlinks t))
+    ("4904daa168519536b08ca4655d798ca0fb50d3545e6244cefcf7d0c7b338af7e" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
