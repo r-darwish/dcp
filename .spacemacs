@@ -35,6 +35,7 @@ values."
      'github
      'markdown
      'rust
+     'c-c++
      '(colors :variables colors-enable-nyan-cat-progress-bar (display-graphic-p))
      ;; org
      ;; (shell :variables
