@@ -1,5 +1,5 @@
 (setq darwish-packages
-      '(yaml-mode jinja2-mode systemd google-this evil-mc flycheck python yasnippet pyvenv git-link))
+      '(yaml-mode jinja2-mode systemd google-this evil-mc flycheck python yasnippet pyvenv git-link evil-nerd-commenter))
 
 (defun darwish/init-yaml-mode ()
   (use-package yaml-mode))
@@ -36,3 +36,6 @@
 
 (defun darwish/post-init-company ()
   (setq-default company-idle-delay 0.0))
+
+(defun darwish/post-init-evil-nerd-commenter ()
+  (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-operator))
