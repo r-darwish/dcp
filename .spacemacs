@@ -23,11 +23,14 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     'auto-completion
+     'darwish
+     '(auto-completion :variables
+                       auto-completion-private-snippets-directory dcp-snippet-dir
+                       auto-completion-complete-with-key-sequence-delay 0.0
+                       auto-completion-enable-snippets-in-popup t)
      ;; better-defaults
      'emacs-lisp
      'spacemacs-ivy
-     'darwish
      'python
      'javascript
      'html

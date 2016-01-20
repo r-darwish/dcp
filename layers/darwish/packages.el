@@ -21,7 +21,7 @@
   (global-flycheck-mode t))
 
 (defun darwish/post-init-yasnippet ()
-  (add-to-list 'yas-snippet-dirs (expand-file-name "~/.dcp/yasnippets")))
+  (add-to-list 'yas-snippet-dirs dcp-snippet-dir))
 
 (defun darwish/post-init-pyvenv ()
   (add-hook 'python-mode-hook (pyvenv-tracking-mode t)))

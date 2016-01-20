@@ -1,3 +1,6 @@
+(defconst dcp-snippet-dir
+  (expand-file-name "~/.dcp/yasnippets") nil)
+
 (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("slashrc\\'" . python-mode))

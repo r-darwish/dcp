@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: getprop
+# key: getprop
+# binding: direct-keybinding
+# --
+def get_$1(self):
+    return self._$1
