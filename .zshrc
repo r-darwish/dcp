@@ -48,6 +48,7 @@ alias pac=pacaur
 alias jc=journalctl
 alias gf=git-flow
 alias ec='emacsclient -n'
+alias ect='emacsclient -t'
 unalias ag 2>/dev/null
 
 function _fgnd() {
