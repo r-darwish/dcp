@@ -47,6 +47,7 @@ alias lenv='activate .env'
 alias pac=pacaur
 alias jc=journalctl
 alias gf=git-flow
+alias ec='emacsclient -n'
 unalias ag 2>/dev/null
 
 function _fgnd() {
@@ -67,7 +68,7 @@ if [ -f "${HOME}/.local.zsh" ]; then
     source "${HOME}/.local.zsh"
 fi
 
-export EDITOR="vim"
+export EDITOR="emacsclient"
 
 bindkey "^[[1;9C" forward-word
 bindkey "^[[1;9D" backward-word
