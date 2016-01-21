@@ -30,6 +30,8 @@ values."
                        auto-completion-enable-snippets-in-popup t)
      ;; better-defaults
      'emacs-lisp
+     'restclient
+     'eyebrowse
      'spacemacs-ivy
      'python
      'javascript
