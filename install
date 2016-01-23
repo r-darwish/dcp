@@ -17,10 +17,12 @@ def _dcp_dir(*args):
 
 _GITCONFIG = _home('.gitconfig')
 _ZSHRC = _home('.zshrc')
+_ZGEN = _home('.zgen-repo')
 _TMUX = _home('.tmux.conf')
 _PYLINTRC = _home('.pylintrc')
 _TMUX_OSX = _home('.tmux-osx.conf')
-_VIM = _home('.vim')
+_NEOBUNDLE_BASE = _home('.vim', 'bundle')
+_NEOBUNDLE_PATH = os.path.join(_NEOBUNDLE_BASE, 'neobundle.vim')
 _VIMRC = _home('.vimrc')
 _GLOBAL_GITIGNORE = _home('.gitignore_global')
 
@@ -31,20 +33,39 @@ def _symlink(source, dest):
         os.symlink(source, dest)
 
 
-def main():
-    subprocess.check_call('git submodule update --init --recursive', cwd=_DCP_DIR, shell=True)
+def _checkout(path, repo, branch=None):
+    if not os.path.exists(path):
+        args = ['git', 'clone']
+        if branch:
+            args.extend(['--branch', branch])
 
+        args.extend([repo, path])
+        subprocess.check_call(args)
+
+
+def _ensure_dir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+
+def main():
     _symlink(_dcp_dir('.tmux.conf'), _TMUX)
     _symlink(_dcp_dir('.tmux-osx.conf'), _TMUX_OSX)
-    _symlink(_dcp_dir('.pylintrc'), _PYLINTRC)
-    _symlink(_dcp_dir('gitignore_global'), _GLOBAL_GITIGNORE)
-    _symlink(_dcp_dir('vim'), _VIM)
-    _symlink(_dcp_dir('vim', '.vimrc'), _VIMRC)
+
+    _checkout(_ZGEN, 'https://github.com/tarjoilija/zgen.git')
     _symlink(_dcp_dir('.zshrc'), _ZSHRC)
+
+    _ensure_dir(_NEOBUNDLE_BASE)
+    _checkout(_NEOBUNDLE_PATH, 'https://github.com/Shougo/neobundle.vim.git')
+
+    _symlink(_dcp_dir('.vimrc'), _VIMRC)
+
     _symlink(_dcp_dir('.spacemacs'), _home('.spacemacs'))
-    _symlink(_dcp_dir('spacemacs'), _home('.emacs.d'))
+    _checkout(_home('.emacs.d'), 'https://github.com/syl20bnr/spacemacs.git', branch='develop')
 
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
+    _symlink(_dcp_dir('.pylintrc'), _PYLINTRC)
+    _symlink(_dcp_dir('gitignore_global'), _GLOBAL_GITIGNORE)
 
 
 

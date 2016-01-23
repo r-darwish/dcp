@@ -8,7 +8,7 @@ then
 fi
 
 DISABLE_AUTO_UPDATE="true"
-source "${HOME}/.dcp/zgen/zgen.zsh"
+source "${HOME}/.zgen-repo/zgen.zsh"
 
 # check if there's no init script
 if ! zgen saved; then
