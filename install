@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+import argparse
 
 
 def _home(*args):
@@ -48,21 +49,34 @@ def _ensure_dir(path):
         os.makedirs(path)
 
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--no-emacs', action="store_true", default=False, required=False, help='Don\'t install Emacs')
+parser.add_argument('--no-vim', action="store_true", default=False, required=False, help='Don\'t install Vim')
+
 def main():
+    args = parser.parse_args()
+
+    print("Ensuring tmux config")
     _symlink(_dcp_dir('.tmux.conf'), _TMUX)
     _symlink(_dcp_dir('.tmux-osx.conf'), _TMUX_OSX)
 
+    print("Ensuring ZSH config")
     _checkout(_ZGEN, 'https://github.com/tarjoilija/zgen.git')
     _symlink(_dcp_dir('.zshrc'), _ZSHRC)
 
-    _ensure_dir(_NEOBUNDLE_BASE)
-    _checkout(_NEOBUNDLE_PATH, 'https://github.com/Shougo/neobundle.vim.git')
+    if not args.no_vim:
+        print("Ensuring Vim config")
+        _ensure_dir(_NEOBUNDLE_BASE)
+        _checkout(_NEOBUNDLE_PATH, 'https://github.com/Shougo/neobundle.vim.git')
+        _symlink(_dcp_dir('.vimrc'), _VIMRC)
 
-    _symlink(_dcp_dir('.vimrc'), _VIMRC)
+    if not args.no_emacs:
+        print("Ensuring Emacs config")
+        _symlink(_dcp_dir('.spacemacs'), _home('.spacemacs'))
+        _checkout(_home('.emacs.d'), 'https://github.com/syl20bnr/spacemacs.git', branch='develop')
 
-    _symlink(_dcp_dir('.spacemacs'), _home('.spacemacs'))
-    _checkout(_home('.emacs.d'), 'https://github.com/syl20bnr/spacemacs.git', branch='develop')
-
+    print("Ensuring other config files")
     subprocess.check_call(['git', 'config', '--global', 'include.path', _dcp_dir('gitconfig')])
     _symlink(_dcp_dir('.pylintrc'), _PYLINTRC)
     _symlink(_dcp_dir('gitignore_global'), _GLOBAL_GITIGNORE)
