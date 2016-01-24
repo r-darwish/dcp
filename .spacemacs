@@ -2,6 +2,9 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+(defconst dcp-snippet-dir
+  (expand-file-name "~/.dcp/yasnippets") nil)
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -55,7 +58,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(systemd yaml-mode jinja2-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -209,6 +212,33 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (global-evil-mc-mode t)
+  (global-flycheck-mode t)
+  (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
+  (add-hook 'python-mode-hook (pyvenv-tracking-mode t))
+  (eval-after-load "git-link"
+    '(progn
+       (add-to-list 'git-link-remote-alist
+                    '("git.infinidat.com" git-link-gitlab))
+       (add-to-list 'git-link-commit-remote-alist
+                    '("git.infinidat.com" git-link-commit-gitlab))))
+  (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-operator)
+  (if (eq system-type 'darwin)
+      (setq-default magit-revision-show-gravatars nil)
+    )
+  (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
+  (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
+  (add-to-list 'auto-mode-alist '("slashrc\\'" . python-mode))
+  (setq-default js2-basic-offset 2
+                css-indent-offset 2
+                c-basic-offset 4
+                git-commit-summary-max-length 200
+                git-commit-fill-column 200
+                vc-follow-symlinks t
+                magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
+  (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
+  (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
+  (spacemacs/set-leader-keys "h m" 'man)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
