@@ -239,7 +239,8 @@ layers configuration. You are free to put any user code."
                 magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
   (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
   (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
-  (spacemacs/set-leader-keys "h m" 'man)
+  (spacemacs/set-leader-keys "hm" 'man)
+  (spacemacs/set-leader-keys "ag" 'engine/search-google)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
