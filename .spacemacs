@@ -216,6 +216,7 @@ layers configuration. You are free to put any user code."
   (global-flycheck-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
   (add-hook 'python-mode-hook (pyvenv-tracking-mode t))
+  (spacemacs/toggle-camel-case-motion-globally-on)
   (eval-after-load "git-link"
     '(progn
        (add-to-list 'git-link-remote-alist
