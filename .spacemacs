@@ -17,38 +17,39 @@ values."
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   (list
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     'darwish
-     '(auto-completion :variables
+     darwish
+     (auto-completion :variables
                        auto-completion-private-snippets-directory dcp-snippet-dir
                        auto-completion-complete-with-key-sequence-delay 0.0
                        auto-completion-enable-snippets-in-popup t)
      ;; better-defaults
-     'emacs-lisp
-     'restclient
-     'eyebrowse
-     'spacemacs-ivy
-     'python
-     'javascript
-     'html
-     'git
-     'github
-     'markdown
-     'rust
-     'c-c++
-     '(colors :variables colors-enable-nyan-cat-progress-bar (display-graphic-p))
+     emacs-lisp
+     restclient
+     search-engine
+     eyebrowse
+     spacemacs-ivy
+     python
+     javascript
+     html
+     git
+     github
+     markdown
+     rust
+     c-c++
+     (colors :variables colors-enable-nyan-cat-progress-bar (display-graphic-p))
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     '(syntax-checking :variables syntax-checking-enable-tooltips nil)
-     'version-control
+     (syntax-checking :variables syntax-checking-enable-tooltips nil)
+     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these

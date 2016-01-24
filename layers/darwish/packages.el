@@ -1,5 +1,5 @@
 (setq darwish-packages
-      '(yaml-mode jinja2-mode systemd google-this evil-mc flycheck python yasnippet pyvenv git-link evil-nerd-commenter magit))
+      '(yaml-mode jinja2-mode systemd evil-mc flycheck python yasnippet pyvenv git-link evil-nerd-commenter magit))
 
 (defun darwish/init-yaml-mode ()
   (use-package yaml-mode))
@@ -9,10 +9,6 @@
 
 (defun darwish/init-jinja2-mode ()
   (use-package jinja2-mode))
-
-(defun darwish/init-google-this ()
-  (use-package google-this
-    :init (spacemacs/set-leader-keys "xgs" 'google-this-noconfirm)))
 
 (defun darwish/post-init-evil-mc ()
   (global-evil-mc-mode t))
