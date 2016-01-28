@@ -1,0 +1,3 @@
+[submodule "layers/darwish/local/slash"]
+	path = layers/darwish/local/slash
+	url = git@github.com:getslash/slash-mode.git
