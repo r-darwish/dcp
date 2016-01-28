@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;;-*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -31,7 +31,6 @@ values."
                        auto-completion-private-snippets-directory dcp-snippet-dir
                        auto-completion-complete-with-key-sequence-delay 0.0
                        auto-completion-enable-snippets-in-popup t)
-     ;; better-defaults
      emacs-lisp
      restclient
      search-engine
@@ -45,12 +44,8 @@ values."
      markdown
      rust
      c-c++
+     systemd
      (colors :variables colors-enable-nyan-cat-progress-bar (display-graphic-p))
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      version-control
      )
@@ -58,7 +53,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(systemd yaml-mode jinja2-mode)
+   dotspacemacs-additional-packages '(yaml-mode jinja2-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(pyenv-mode)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
