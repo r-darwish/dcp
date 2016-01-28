@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fixture
+# key: fixt
+# binding: direct-keybinding
+# --
+@slash.fixture
+def $1():
+    $0
