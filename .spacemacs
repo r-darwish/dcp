@@ -237,6 +237,7 @@ layers configuration. You are free to put any user code."
   (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
   (spacemacs/set-leader-keys "hm" 'man)
   (spacemacs/set-leader-keys "ag" 'engine/search-google)
+  (spacemacs/toggle-mode-line-minor-modes-off)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
