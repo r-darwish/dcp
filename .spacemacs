@@ -43,6 +43,7 @@ values."
      git
      github
      markdown
+     semantic
      rust
      c-c++
      systemd
@@ -212,7 +213,9 @@ layers configuration. You are free to put any user code."
   (global-evil-mc-mode t)
   (global-flycheck-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
-  (add-hook 'python-mode-hook (pyvenv-tracking-mode t))
+  (add-hook 'python-mode-hook (lambda ()
+                                 (pyvenv-tracking-mode t)
+                                 (semantic-mode t)))
   (spacemacs/toggle-camel-case-motion-globally-on)
   (eval-after-load "git-link"
     '(progn
