@@ -80,3 +80,4 @@ bindkey "^[[1;3D" backward-word
 
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
+export HUNTER_ROOT="${HOME}/.hunter"
