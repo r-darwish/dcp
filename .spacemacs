@@ -224,9 +224,6 @@ layers configuration. You are free to put any user code."
        (add-to-list 'git-link-commit-remote-alist
                     '("git.infinidat.com" git-link-commit-gitlab))))
   (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-operator)
-  (if (eq system-type 'darwin)
-      (setq-default magit-revision-show-gravatars nil)
-    )
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
   (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
   (add-to-list 'auto-mode-alist '("slashrc\\'" . python-mode))
