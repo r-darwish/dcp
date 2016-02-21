@@ -231,8 +231,8 @@ layers configuration. You are free to put any user code."
                 css-indent-offset 2
                 c-basic-offset 4
                 c-default-style "bsd"
-                git-commit-summary-max-length 200
-                git-commit-fill-column 200
+                git-commit-summary-max-length 80
+                git-commit-fill-column 80
                 vc-follow-symlinks t
                 web-mode-markup-indent-offset 2
                 magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
