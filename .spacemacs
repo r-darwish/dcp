@@ -66,6 +66,12 @@ values."
   (if (string-equal system-type 'darwin)
       (add-to-list 'dotspacemacs-configuration-layers 'osx)))
 
+
+(defun my/colorize-compilation-buffer ()
+  (when (eq major-mode 'compilation-mode)
+    (ansi-color-apply-on-region compilation-filter-start (point-max))))
+
+
 (defun dotspacemacs/init ()
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
@@ -243,6 +249,11 @@ layers configuration. You are free to put any user code."
   (add-hook 'c-mode-common-hook (lambda ()
                                   (c-set-offset 'innamespace 0)))
   (spacemacs/toggle-mode-line-minor-modes-off)
+  (spacemacs/set-leader-keys-for-major-mode 'c++-mode
+    "bb" 'gud-break)
+  (spacemacs/set-leader-keys-for-major-mode 'c++-mode
+    "br" 'gud-remove)
+  (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
