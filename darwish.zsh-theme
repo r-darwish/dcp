@@ -55,21 +55,26 @@ vcs_prompt_chars=(
     esac
 }
 
-venv_prompt() {
-    if [[ -z ${VIRTUAL_ENV} ]]; then return; fi
+_venv_info() {
+    if [[ -z ${VIRTUAL_ENV} ]]; then
+        _venv_prompt=''
+        return;
+    fi
     local -a venv_list
-    venv_list=(${(s:/:)${VIRTUAL_ENV}})
+    venv_list=("${(@s:/:)${VIRTUAL_ENV}}")
     local venv=${venv_list[-1]}
     if [[ ${venv} == ".env" ]]; then
         venv=${venv_list[-2]}
     fi
-    echo "🐍 %F{magenta}(%F{white}${venv}%F{magenta}) "
+    _venv_prompt="🐍 %F{magenta}(%F{white}${venv}%F{magenta}) "
 }
 
 add-zsh-hook precmd vcs_info
+add-zsh-hook precmd _venv_info
+
 if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
     PROMPT_HOST='%F{magenta}%n@%m%f'
 fi
 PROMPT='%B${PROMPT_HOST} %(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
-RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}$(venv_prompt)%F{blue}%1~'
+RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}${_venv_prompt}%F{blue}%1~'
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
