@@ -216,7 +216,8 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  (global-evil-mc-mode t)
+  (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
+  (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
   (global-flycheck-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
   (add-hook 'python-mode-hook (lambda ()
