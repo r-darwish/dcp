@@ -34,6 +34,7 @@ values."
                        auto-completion-enable-snippets-in-popup t)
      emacs-lisp
      restclient
+     dockerfile
      search-engine
      eyebrowse
      python
