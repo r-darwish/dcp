@@ -47,7 +47,8 @@ values."
      rust
      c-c++
      systemd
-     (colors :variables colors-enable-nyan-cat-progress-bar (display-graphic-p))
+     (shell :variables shell-default-shell 'eshell)
+     colors
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
      (version-control :variables
                       version-control-diff-tool 'diff-hl)
