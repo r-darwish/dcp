@@ -36,7 +36,6 @@ values."
      restclient
      search-engine
      eyebrowse
-     spacemacs-ivy
      python
      javascript
      html
