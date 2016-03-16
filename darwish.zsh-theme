@@ -1,14 +1,6 @@
-local light_blue=39
-local orange=208
-
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[command]="fg=$light_blue"
-ZSH_HIGHLIGHT_STYLES[builtin]="fg=$light_blue"
-ZSH_HIGHLIGHT_STYLES[alias]="fg=$light_blue"
-ZSH_HIGHLIGHT_STYLES[activate]="fg=$light_blue"
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=226'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=226'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
 
 autoload -Uz vcs_info
 
