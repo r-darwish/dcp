@@ -18,7 +18,7 @@ def _dcp_dir(*args):
 
 _GITCONFIG = _home('.gitconfig')
 _ZSHRC = _home('.zshrc')
-_ZGEN = _home('.zgen-repo')
+_ZPLUG = _home('.zplug')
 _TMUX = _home('.tmux.conf')
 _PYLINTRC = _home('.pylintrc')
 _TMUX_OSX = _home('.tmux-osx.conf')
@@ -62,7 +62,7 @@ def main():
     _symlink(_dcp_dir('.tmux-osx.conf'), _TMUX_OSX)
 
     print("Ensuring ZSH config")
-    _checkout(_ZGEN, 'https://github.com/tarjoilija/zgen.git')
+    _checkout(_ZPLUG, 'https://github.com/b4b4r07/zplug.git')
     _symlink(_dcp_dir('.zshrc'), _ZSHRC)
 
     if not args.no_vim:

@@ -3,6 +3,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue,bold'
 
 autoload -Uz vcs_info
+autoload -U add-zsh-hook
 
 zstyle ':vcs_info:*' enable git hg svn cvs
 zstyle ':vcs_info:*' check-for-changes true

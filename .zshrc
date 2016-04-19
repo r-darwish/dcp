@@ -7,37 +7,28 @@ then
     return
 fi
 
-DISABLE_AUTO_UPDATE="true"
-source "${HOME}/.zgen-repo/zgen.zsh"
+source ~/.zplug/zplug
 
-# check if there's no init script
-if ! zgen saved; then
-    echo "Creating a zgen save"
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-    zgen oh-my-zsh
+zplug "lib/theme-and-appearance", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh, if:"which git"
+zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git-flow"
+zplug "plugins/sudo", from:oh-my-zsh, if:"which sudo"
+zplug "plugins/fasd", from:oh-my-zsh, if:"which fasd"
+zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux"
+zplug "plugins/systemd", from:oh-my-zsh, if:"which systemctl"
+zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
+zplug "plugins/common-aliases", from:oh-my-zsh
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "chrissicool/zsh-256color"
 
-    # plugins
-    zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/git-flow-avh
-    zgen oh-my-zsh plugins/sudo
-    zgen oh-my-zsh plugins/fasd
-    zgen oh-my-zsh plugins/virtualenv
-    zgen oh-my-zsh plugins/colored-man-pages
-    zgen oh-my-zsh plugins/debian
-    zgen oh-my-zsh plugins/pyenv
-    zgen oh-my-zsh plugins/tmux
-    zgen oh-my-zsh plugins/systemd
-    zgen oh-my-zsh plugins/ssh-agent
-    zgen oh-my-zsh plugins/common-aliases
-    zgen load zsh-users/zsh-syntax-highlighting
-    zgen load chrissicool/zsh-256color
-
-    # completions
-    zgen load zsh-users/zsh-completions src
-
-    # save all to init script
-    zgen save
+if ! zplug check --verbose; then
+    zplug install
 fi
+
+zplug load
 
 unset zle_bracketed_paste
 
