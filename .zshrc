@@ -27,7 +27,7 @@ zplug "plugins/common-aliases", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "chrissicool/zsh-256color"
-zplug "mollifier/anyframe"
+zplug "zsh-users/zaw"
 
 if ! zplug check --verbose; then
     zplug install
@@ -35,16 +35,11 @@ fi
 
 zplug load
 
-bindkey '^xr' anyframe-widget-execute-history
-bindkey '^x^r' anyframe-widget-execute-history
-bindkey '^xi' anyframe-widget-put-history
-bindkey '^x^i' anyframe-widget-put-history
-bindkey '^xk' anyframe-widget-kill
-bindkey '^x^k' anyframe-widget-kill
-bindkey '^xd' anyframe-widget-cdr
-bindkey '^xf' anyframe-widget-insert-filename
 
-
+bindkey '^xr' zaw-history
+bindkey '^xd' zaw-fasd-directories
+bindkey '^xf' zaw-fasd-files
+bindkey '^xp' zaw-process
 
 unset zle_bracketed_paste
 
