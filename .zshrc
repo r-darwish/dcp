@@ -11,6 +11,9 @@ source ~/.zplug/zplug
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
 zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh, if:"which git"
 zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git-flow"
@@ -23,12 +26,24 @@ zplug "plugins/common-aliases", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "chrissicool/zsh-256color"
+zplug "mollifier/anyframe"
 
 if ! zplug check --verbose; then
     zplug install
 fi
 
 zplug load
+
+bindkey '^xr' anyframe-widget-execute-history
+bindkey '^x^r' anyframe-widget-execute-history
+bindkey '^xi' anyframe-widget-put-history
+bindkey '^x^i' anyframe-widget-put-history
+bindkey '^xk' anyframe-widget-kill
+bindkey '^x^k' anyframe-widget-kill
+bindkey '^xb' anyframe-widget-cdr
+bindkey '^xf' anyframe-widget-insert-filename
+
+
 
 unset zle_bracketed_paste
 
