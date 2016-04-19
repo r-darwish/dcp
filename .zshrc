@@ -41,7 +41,7 @@ bindkey '^xi' anyframe-widget-put-history
 bindkey '^x^i' anyframe-widget-put-history
 bindkey '^xk' anyframe-widget-kill
 bindkey '^x^k' anyframe-widget-kill
-bindkey '^xb' anyframe-widget-cdr
+bindkey '^xd' anyframe-widget-cdr
 bindkey '^xf' anyframe-widget-insert-filename
 
 
