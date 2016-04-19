@@ -10,6 +10,7 @@ fi
 source ~/.zplug/zplug
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+DISABLE_AUTO_UPDATE="true"
 
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
