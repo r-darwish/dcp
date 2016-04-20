@@ -28,6 +28,7 @@ zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "chrissicool/zsh-256color"
 zplug "zsh-users/zaw"
+zplug "supercrabtree/k"
 
 if ! zplug check --verbose; then
     zplug install
@@ -51,6 +52,7 @@ alias jc=journalctl
 alias gf=git-flow
 alias ec='emacsclient -n'
 alias ect='emacsclient -t'
+alias l='k'
 unalias ag 2>/dev/null
 
 function _fgnd() {
