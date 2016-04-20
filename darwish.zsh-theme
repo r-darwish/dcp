@@ -62,12 +62,23 @@ _venv_info() {
     _venv_prompt="🐍 %F{magenta}(%F{white}${venv}%F{magenta}) "
 }
 
+function zle-line-init zle-keymap-select {
+    if [[ ${KEYMAP} == "main" ]]; then
+        _vim_prompt="%F{green}● "
+    else
+        _vim_prompt="%F{yellow}● "
+    fi
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 add-zsh-hook precmd vcs_info
 add-zsh-hook precmd _venv_info
 
 if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
     PROMPT_HOST='%F{magenta}%n@%m%f'
 fi
-PROMPT='%B${PROMPT_HOST} %(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
+PROMPT='%B${PROMPT_HOST} ${_vim_prompt}%(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
 RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}${_venv_prompt}%F{blue}%1~'
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '

@@ -37,11 +37,6 @@ fi
 zplug load
 
 
-bindkey '^xr' zaw-history
-bindkey '^xd' zaw-fasd-directories
-bindkey '^xf' zaw-fasd-files
-bindkey '^xp' zaw-process
-
 unset zle_bracketed_paste
 
 alias nd='local t=$?; pb push -t "$(hostname -s)" "Process exited: $t"; unset t'
@@ -54,6 +49,23 @@ alias ec='emacsclient -n'
 alias ect='emacsclient -t'
 alias l='k'
 unalias ag 2>/dev/null
+
+bindkey -v
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
+bindkey '^xr' zaw-history
+bindkey '^xd' zaw-fasd-directories
+bindkey '^xf' zaw-fasd-files
+bindkey '^xp' zaw-process
+
+export KEYTIMEOUT=1
+
 
 function _fgnd() {
     BUFFER="fgnd"
