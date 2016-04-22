@@ -20,8 +20,8 @@ _GITCONFIG = _home('.gitconfig')
 _ZSHRC = _home('.zshrc')
 _ZPLUG = _home('.zplug')
 _TMUX = _home('.tmux.conf')
+_TPM = _home('.tmux/plugins/tpm')
 _PYLINTRC = _home('.pylintrc')
-_TMUX_OSX = _home('.tmux-osx.conf')
 _NEOBUNDLE_BASE = _home('.vim', 'bundle')
 _NEOBUNDLE_PATH = os.path.join(_NEOBUNDLE_BASE, 'neobundle.vim')
 _VIMRC = _home('.vimrc')
@@ -59,7 +59,7 @@ def main():
 
     print("Ensuring tmux config")
     _symlink(_dcp_dir('.tmux.conf'), _TMUX)
-    _symlink(_dcp_dir('.tmux-osx.conf'), _TMUX_OSX)
+    _checkout(_TPM, 'https://github.com/tmux-plugins/tpm')
 
     print("Ensuring ZSH config")
     _checkout(_ZPLUG, 'https://github.com/b4b4r07/zplug.git')
