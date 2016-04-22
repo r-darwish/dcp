@@ -220,6 +220,7 @@ layers configuration. You are free to put any user code."
   (add-hook 'prog-mode-hook 'turn-on-evil-mc-mode)
   (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
   (global-flycheck-mode t)
+  (global-git-commit-mode t)
   (spacemacs/toggle-smartparens-globally-off)
   (company-statistics-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
