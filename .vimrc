@@ -74,6 +74,7 @@ nnoremap Q <nop>
 nmap s <Plug>(easymotion-s)
 omap s <Plug>(easymotion-s)
 xmap s <Plug>(easymotion-s)
+imap fd <Esc>
 
 set ignorecase smartcase
 command W SudoWrite
