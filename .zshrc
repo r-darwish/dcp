@@ -85,7 +85,11 @@ if [ -f "${HOME}/.local.zsh" ]; then
     source "${HOME}/.local.zsh"
 fi
 
-export EDITOR="emacsclient"
+if ! type emacsclient > /dev/null; then
+    export EDITOR=vim
+else
+    export EDITOR="emacsclient -a vim"
+fi
 
 bindkey "^[[1;9C" forward-word
 bindkey "^[[1;9D" backward-word
