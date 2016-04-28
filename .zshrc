@@ -12,13 +12,8 @@ source ~/.zplug/zplug
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 DISABLE_AUTO_UPDATE="true"
 
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-
-zplug "lib/theme-and-appearance", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh, if:"which git"
 zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git-flow"
-zplug "plugins/sudo", from:oh-my-zsh, if:"which sudo"
 zplug "plugins/fasd", from:oh-my-zsh, if:"which fasd"
 zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux"
 zplug "plugins/systemd", from:oh-my-zsh, if:"which systemctl"
