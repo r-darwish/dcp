@@ -45,15 +45,6 @@ alias ect='emacsclient -t'
 alias l='k'
 unalias ag 2>/dev/null
 
-bindkey -v
-
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-
 bindkey '^xr' zaw-history
 bindkey '^xd' zaw-fasd-directories
 bindkey '^xf' zaw-fasd-files
