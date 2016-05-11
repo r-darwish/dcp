@@ -21,13 +21,17 @@ zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git-flow"
 zplug "plugins/fasd", from:oh-my-zsh, if:"which fasd"
 zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux", nice:10
 zplug "plugins/systemd", from:oh-my-zsh, if:"which systemctl"
-zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
 zplug "plugins/common-aliases", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "chrissicool/zsh-256color"
-zplug "zsh-users/zaw"
-zplug "supercrabtree/k"
+if [[ -n ${ANDROID_ROOT} ]] ; then
+    alias ai="apt install"
+else
+    zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
+    zplug "zsh-users/zaw"
+    zplug "supercrabtree/k"
+fi
 
 if ! zplug check --verbose; then
     zplug install
