@@ -12,10 +12,14 @@ source ~/.zplug/zplug
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 DISABLE_AUTO_UPDATE="true"
 
-zplug "plugins/git", from:oh-my-zsh, if:"which git"
+zplug "lib/misc", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+
+zplug "plugins/git", from:oh-my-zsh, if:"which git", nice:10
 zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git-flow"
 zplug "plugins/fasd", from:oh-my-zsh, if:"which fasd"
-zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux"
+zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux", nice:10
 zplug "plugins/systemd", from:oh-my-zsh, if:"which systemctl"
 zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
 zplug "plugins/common-aliases", from:oh-my-zsh
