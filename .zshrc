@@ -29,8 +29,16 @@ if [[ -n ${ANDROID_ROOT} ]] ; then
     alias ai="apt install"
 else
     zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
-    zplug "zsh-users/zaw"
     zplug "supercrabtree/k"
+    zplug "junegunn/fzf", of:"shell/*.zsh", nice: 10
+    export FZF_COMPLETION_TRIGGER="~~"
+    export FZF_DEFAULT_COMMAND='ag -g ""'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND="fasd -Rdl"
+    alias fzfag="ag --nobreak --nonumbers --noheading . | fzf-tmux"
+    _fzf_compgen_path() {
+        ag -g "" "$1"
+    }
 fi
 
 if ! zplug check --verbose; then
