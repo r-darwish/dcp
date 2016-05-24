@@ -12,6 +12,10 @@ source ~/.zplug/zplug
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 DISABLE_AUTO_UPDATE="true"
 
+if [[ -z "$ZSH_CACHE_DIR" ]]; then
+    ZSH_CACHE_DIR="${HOME}/.zplug/repos/robbyrussell/oh-my-zsh/cache"
+fi
+
 zplug "lib/misc", from:oh-my-zsh
 zplug "lib/key-bindings", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
@@ -30,7 +34,7 @@ if [[ -n ${ANDROID_ROOT} ]] ; then
 else
     zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
     zplug "supercrabtree/k"
-    zplug "junegunn/fzf", of:"shell/*.zsh", nice: 10
+    zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
     export FZF_COMPLETION_TRIGGER="~~"
     export FZF_DEFAULT_COMMAND='ag -g ""'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
