@@ -12,10 +12,6 @@ source ~/.zplug/zplug
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 DISABLE_AUTO_UPDATE="true"
 
-if [[ -z "$ZSH_CACHE_DIR" ]]; then
-    ZSH_CACHE_DIR="${HOME}/.zplug/repos/robbyrussell/oh-my-zsh/cache"
-fi
-
 zplug "lib/misc", from:oh-my-zsh
 zplug "lib/key-bindings", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
