@@ -33,6 +33,7 @@ values."
                        auto-completion-complete-with-key-sequence-delay 0.0
                        auto-completion-enable-snippets-in-popup t)
      emacs-lisp
+     (go :variables go-tab-width 4)
      restclient
      dockerfile
      search-engine
