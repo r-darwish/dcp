@@ -8,3 +8,9 @@
           (insert " pylint: disable="
                   (s-join ", " ids))
           ))))
+
+(defun jump-to-bad-ctor ()
+  (interactive)
+  (search-forward "required from here")
+  (recenter-top-bottom)
+  (compile-goto-error))
