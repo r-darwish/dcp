@@ -5,3 +5,5 @@
 
 (spacemacs/set-leader-keys-for-major-mode 'compilation-mode
   "j" 'jump-to-bad-ctor)
+
+(spacemacs/set-leader-keys "pr" 'projectile-rebuild-project)

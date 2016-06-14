@@ -14,3 +14,9 @@
   (search-forward "required from here")
   (recenter-top-bottom)
   (compile-goto-error))
+
+(defun projectile-rebuild-project ()
+  (interactive)
+  (save-some-buffers t)
+  (let ((compilation-read-command nil))
+    (projectile-compile-project nil)))
