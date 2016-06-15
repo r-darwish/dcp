@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: tox
+# key: tox
+# binding: direct-keybinding
+# --
+[tox]
+envlist = py27,py34,py35
+
+[testenv]
+commands=
+	$1
+deps=
+	$2
+changedir = {toxinidir}

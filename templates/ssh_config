@@ -1,4 +1,0 @@
-Host *
-    ControlPath ~/.ssh/%r@%h:%p
-    ControlMaster auto
-    ControlPersist 1m

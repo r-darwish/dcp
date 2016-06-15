@@ -1,0 +1,13 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: simple
+# key: simplet
+# binding: direct-keybinding
+# --
+[Unit]
+Description=$1
+
+[Service]
+ExecStart=$2
+
+[Install]
+WantedBy=multi-user.target

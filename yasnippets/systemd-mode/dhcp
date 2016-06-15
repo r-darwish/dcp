@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dhcp
+# key: dhcpt
+# binding: direct-keybinding
+# --
+[Match]
+Name=$1
+
+[Network]
+DHCP=yes

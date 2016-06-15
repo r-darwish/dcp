@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: staticip
+# key: staticip
+# binding: direct-keybinding
+# --
+[Match]
+Name=$1
+
+[Network]
+DNS=$4
+Address=$3
+Gateway=$2

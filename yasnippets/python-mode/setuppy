@@ -1,3 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: setuppy
+# key: setuppy
+# binding: direct-keybinding
+# --
 from setuptools import setup, find_packages
 import functools
 import os
@@ -8,13 +13,13 @@ with open(_in_same_dir("src", "__version__.py")) as version_file:
     exec(version_file.read())  # pylint: disable=W0122
 
 install_requires = [
-    "something",
+    $3
 ]
-setup(name="project",
+setup(name="$1",
       classifiers=[
           "Programming Language :: Python :: 3.5",
       ],
-      description="A Testing Framework",
+      description="$2",
       license="BSD",
       author="Roey Darwish Dror",
       author_email="roey.ghost@gmail.com",
