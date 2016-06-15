@@ -20,3 +20,8 @@
   (save-some-buffers t)
   (let ((compilation-read-command nil))
     (projectile-compile-project nil)))
+
+(defun projectile-switch-to-git ()
+  (interactive)
+  (let ((projectile-switch-project-action 'projectile-vc))
+    (projectile-switch-project)))
