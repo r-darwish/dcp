@@ -49,6 +49,7 @@ values."
      rust
      c-c++
      systemd
+     (spell-checking :variables spell-checking-enable-by-default nil)
      (shell :variables shell-default-shell 'eshell)
      colors
      (syntax-checking :variables syntax-checking-enable-tooltips nil)
@@ -263,6 +264,7 @@ layers configuration. You are free to put any user code."
   (spacemacs/set-leader-keys-for-major-mode 'c++-mode
     "br" 'gud-remove)
   (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
+  (add-hook 'text-mode-hook (lambda () (flyspell-mode t)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
