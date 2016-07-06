@@ -231,12 +231,6 @@ layers configuration. You are free to put any user code."
                                  (pyvenv-tracking-mode t)
                                  (semantic-mode t)))
   (spacemacs/toggle-camel-case-motion-globally-on)
-  (eval-after-load "git-link"
-    '(progn
-       (add-to-list 'git-link-remote-alist
-                    '("git.infinidat.com" git-link-gitlab))
-       (add-to-list 'git-link-commit-remote-alist
-                    '("git.infinidat.com" git-link-commit-gitlab))))
   (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-operator)
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
   (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
