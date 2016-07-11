@@ -9,3 +9,9 @@
 (spacemacs/set-leader-keys
   "pr" 'projectile-rebuild-project
   "pg" 'projectile-switch-to-git)
+(spacemacs/set-leader-keys "ag"
+  (lambda ()
+     (interactive)
+     (when (not (fboundp 'engine/search-google))
+       (require 'engine-mode))
+     (call-interactively 'engine/search-google)))
