@@ -1,6 +1,7 @@
 (setq darwish-packages
       '((slash :location local)
         modern-cpp-font-lock
+        git-messenger
         git-link))
 
 (defun darwish/init-slash ()
@@ -14,3 +15,10 @@
     '(progn
       (add-to-list 'git-link-remote-alist '("git.infinidat.com" git-link-gitlab))
       (add-to-list 'git-link-commit-remote-alist '("git.infinidat.com" git-link-commit-github)))))
+
+(defun darwish/post-init-git-messenger ()
+  (spacemacs|use-package-add-hook git-messenger
+    :post-config
+    (progn
+      (define-key git-messenger-map (kbd "l") 'git-link-commit-from-messenger)
+      (define-key git-messenger-map (kbd "d") 'git-messenger-show-with-magit))))

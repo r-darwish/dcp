@@ -25,3 +25,15 @@
   (interactive)
   (let ((projectile-switch-project-action 'projectile-vc))
     (projectile-switch-project)))
+
+(defun git-link-commit-from-messenger ()
+  (interactive)
+  (require 'git-link)
+  (cl-letf (((symbol-function 'word-at-point)
+             (lambda () git-messenger:last-commit-id)))
+    (call-interactively 'git-link-commit)))
+
+(defun git-messenger-show-with-magit ()
+  (interactive)
+  (magit-show-commit git-messenger:last-commit-id)
+  (git-messenger:popup-close))
