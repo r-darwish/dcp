@@ -35,7 +35,7 @@ values."
      emacs-lisp
      (go :variables go-tab-width 4)
      restclient
-     dockerfile
+     docker
      search-engine
      ivy
      python
