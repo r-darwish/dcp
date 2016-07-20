@@ -45,7 +45,6 @@ values."
      org
      github
      markdown
-     semantic
      rust
      c-c++
      systemd
@@ -228,8 +227,7 @@ layers configuration. You are free to put any user code."
   (company-statistics-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
   (add-hook 'python-mode-hook (lambda ()
-                                 (pyvenv-tracking-mode t)
-                                 (semantic-mode t)))
+                                 (pyvenv-tracking-mode t)))
   (spacemacs/toggle-camel-case-motion-globally-on)
   (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-operator)
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
