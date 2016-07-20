@@ -70,11 +70,6 @@ values."
       (add-to-list 'dotspacemacs-configuration-layers 'osx)))
 
 
-(defun my/colorize-compilation-buffer ()
-  (when (eq major-mode 'compilation-mode)
-    (ansi-color-apply-on-region compilation-filter-start (point-max))))
-
-
 (defun dotspacemacs/init ()
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
@@ -255,7 +250,6 @@ layers configuration. You are free to put any user code."
     "bb" 'gud-break)
   (spacemacs/set-leader-keys-for-major-mode 'c++-mode
     "br" 'gud-remove)
-  (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
   (add-hook 'text-mode-hook (lambda () (flyspell-mode t)))
   )
 
