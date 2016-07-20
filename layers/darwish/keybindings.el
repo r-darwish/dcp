@@ -8,7 +8,10 @@
 
 (spacemacs/set-leader-keys
   "pr" 'projectile-rebuild-project
-  "pg" 'projectile-switch-to-git)
+  "pg" 'projectile-switch-to-git
+  "ps" 'projectile-switch-and-search
+  "glp" 'project-git)
+
 (spacemacs/set-leader-keys "ag"
   (lambda ()
      (interactive)

@@ -4,8 +4,8 @@
          (ids (-map (lambda (s) (flycheck-error-id s)) errs)))
     (if (> (length ids) 0)
         (save-excursion
-          (comment-indent)
-          (insert " pylint: disable="
+          (end-of-line)
+          (insert "  # pylint: disable="
                   (s-join ", " ids))
           ))))
 
@@ -26,6 +26,11 @@
   (let ((projectile-switch-project-action 'projectile-vc))
     (projectile-switch-project)))
 
+(defun projectile-switch-and-search ()
+  (interactive)
+  (let ((projectile-switch-project-action 'spacemacs/search-project-auto))
+    (projectile-switch-project)))
+
 (defun git-link-commit-from-messenger ()
   (interactive)
   (require 'git-link)
@@ -37,3 +42,23 @@
   (interactive)
   (magit-show-commit git-messenger:last-commit-id)
   (git-messenger:popup-close))
+
+(defun project-git ()
+  (interactive)
+  (cl-letf (((symbol-function 'git-link--relative-filename) (lambda () ".gitignore"))
+            ((symbol-function 'git-link--get-region) (lambda () nil)))
+    (call-interactively 'git-link)))
+
+(defun my-compilation-hook ()
+  (spacemacs/scale-down-font))
+
+(add-hook 'compilation-mode-hook 'my-compilation-hook)
+
+
+(add-hook 'python-mode-hook
+          (lambda () (let ((root-dir (projectile-project-root)))
+                        (when root-dir
+                          (let ((pylintrc (concat (file-name-as-directory root-dir) ".pylintrc")))
+                            (when (file-exists-p pylintrc)
+                              (make-local-variable 'flycheck-pylintrc)
+                              (setq flycheck-pylintrc pylintrc)))))))
