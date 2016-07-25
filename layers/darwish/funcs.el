@@ -49,11 +49,6 @@
             ((symbol-function 'git-link--get-region) (lambda () nil)))
     (call-interactively 'git-link)))
 
-(defun my-compilation-hook ()
-  (spacemacs/scale-down-font))
-
-(add-hook 'compilation-mode-hook 'my-compilation-hook)
-
 
 (add-hook 'python-mode-hook
           (lambda () (let ((root-dir (projectile-project-root)))
