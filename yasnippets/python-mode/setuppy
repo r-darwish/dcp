@@ -3,13 +3,14 @@
 # key: setuppy
 # binding: direct-keybinding
 # --
+#!/usr/bin/env python
 from setuptools import setup, find_packages
 import functools
 import os
 
 _in_same_dir = functools.partial(os.path.join, os.path.dirname(__file__))
 
-with open(_in_same_dir("src", "__version__.py")) as version_file:
+with open(_in_same_dir("$1", "__version__.py")) as version_file:
     exec(version_file.read())  # pylint: disable=W0122
 
 install_requires = [
@@ -27,9 +28,9 @@ setup(name="$1",
       version=__version__,  # pylint: disable=E0602
       packages=find_packages(exclude=["tests"]),
       install_requires=install_requires,
-    #   entry_points=dict(
-    #       console_scripts=[
-    #           "slash  = slash.frontend.main:main_entry_point",
-    #       ]
-    #   ),
+      entry_points=dict(
+          console_scripts=[
+              "$1 = $1.main:main",
+          ]
+      ),
 )
