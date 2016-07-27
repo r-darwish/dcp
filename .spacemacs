@@ -239,6 +239,8 @@ layers configuration. You are free to put any user code."
                 git-messenger:show-detail t
                 vc-follow-symlinks t
                 web-mode-markup-indent-offset 2
+                sp-highlight-pair-overlay nil
+                sp-autoinsert-pair nil
                 magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
   (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
   (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
