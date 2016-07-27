@@ -222,9 +222,8 @@ layers configuration. You are free to put any user code."
   (company-statistics-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
   (add-hook 'python-mode-hook (lambda ()
-                                 (pyvenv-tracking-mode t)))
+                                (pyvenv-tracking-mode t)))
   (spacemacs/toggle-camel-case-motion-globally-on)
-  (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-operator)
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . shell-script-mode))
   (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
   (add-to-list 'auto-mode-alist '("slashrc\\'" . python-mode))
@@ -242,16 +241,12 @@ layers configuration. You are free to put any user code."
                 sp-highlight-pair-overlay nil
                 sp-autoinsert-pair nil
                 magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
-  (define-key evil-normal-state-map (kbd "<M-down>") 'spacemacs/next-error)
-  (define-key evil-normal-state-map (kbd "<M-up>") 'spacemacs/previous-error)
-  (spacemacs/set-leader-keys "hm" 'man)
+  (fset 'evil-visual-update-x-selection 'ignore)
   (add-hook 'c-mode-common-hook (lambda ()
                                   (c-set-offset 'innamespace 0)))
   (spacemacs/toggle-mode-line-minor-modes-off)
-  (spacemacs/set-leader-keys-for-major-mode 'c++-mode
-    "bb" 'gud-break)
-  (spacemacs/set-leader-keys-for-major-mode 'c++-mode
-    "br" 'gud-remove)
+  (define-key evil-normal-state-map (kbd "!")
+    'spacemacs/goto-last-searched-ahs-symbol)
   (add-hook 'text-mode-hook (lambda () (flyspell-mode t)))
   )
 
