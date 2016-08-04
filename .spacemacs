@@ -240,6 +240,7 @@ layers configuration. You are free to put any user code."
                 web-mode-markup-indent-offset 2
                 sp-highlight-pair-overlay nil
                 sp-autoinsert-pair nil
+                tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='~/.ssh/%%r@%%h:%%p' -o ControlPersist=1m"
                 magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
   (fset 'evil-visual-update-x-selection 'ignore)
   (add-hook 'c-mode-common-hook (lambda ()
