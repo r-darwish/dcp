@@ -1,16 +1,11 @@
 (setq darwish-packages
       '((slash :location local)
         modern-cpp-font-lock
-        python-mode
         git-messenger
         git-link))
 
 (defun darwish/init-slash ()
   (use-package slash))
-
-(defun darwish/init-python-mode ()
-  (use-package python-mode)
-  (add-hook 'python-mode-hook (lambda () (modify-syntax-entry ?_ "_"))))
 
 (defun darwish/init-modern-cpp-font-lock ()
   (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode))
