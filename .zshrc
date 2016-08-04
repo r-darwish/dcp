@@ -62,6 +62,7 @@ alias gf=git-flow
 alias ec='emacsclient -n'
 alias ect='emacsclient -t'
 alias l='k'
+alias cmk="ssh -O stop"
 unalias ag 2>/dev/null
 
 bindkey '^xr' zaw-history
