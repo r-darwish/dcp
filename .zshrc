@@ -10,26 +10,21 @@ fi
 source ~/.zplug/zplug
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-DISABLE_AUTO_UPDATE="true"
 
-zplug "lib/misc", from:oh-my-zsh
-zplug "lib/key-bindings", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 
-zplug "plugins/git", from:oh-my-zsh, if:"which git", nice:10
-zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"which git-flow"
-zplug "plugins/fasd", from:oh-my-zsh, if:"which fasd"
-zplug "plugins/tmux", from:oh-my-zsh, if:"which tmux", nice:10
-zplug "plugins/systemd", from:oh-my-zsh, if:"which systemctl"
-zplug "plugins/common-aliases", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+# zplug plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "chrissicool/zsh-256color"
 if [[ -n ${ANDROID_ROOT} ]] ; then
     alias ai="apt install"
 else
     zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
-    zplug "supercrabtree/k"
     zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
     export FZF_COMPLETION_TRIGGER="~~"
     export FZF_DEFAULT_COMMAND='ag -g ""'
@@ -39,6 +34,12 @@ else
     _fzf_compgen_path() {
         ag -g "" "$1"
     }
+
+    fasd_cache="$HOME/.fasd-init-zsh"
+    source "$HOME/.zplug/init.zsh"
+    zplug clvv/fasd, \
+          as:command, \
+          hook-build:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
 fi
 
 if ! zplug check --verbose; then
@@ -47,40 +48,25 @@ fi
 
 zplug load
 
-if hash pyenv 2>/dev/null ; then
-    eval "$(pyenv init -)"
+if zplug check clvv/fasd; then
+    source "$fasd_cache"
 fi
+unset fasd_cache
 
 unset zle_bracketed_paste
 
-alias nd='local t=$?; pb push -t "$(hostname -s)" "Process exited: $t"; unset t'
-alias fgnd='fg ; nd'
 alias lenv='activate .env'
 alias pac=pacaur
-alias jc=journalctl
 alias gf=git-flow
 alias ec='emacsclient -n'
 alias ect='emacsclient -t'
-alias l='k'
 alias cmk="ssh -O stop"
+alias jc=journalctl
+alias sc="sudo systemctl"
+alias scdr="sudo systemctl daemon-reload"
 unalias ag 2>/dev/null
 
-bindkey '^xr' zaw-history
-bindkey '^xd' zaw-fasd-directories
-bindkey '^xf' zaw-fasd-files
-bindkey '^xp' zaw-process
-
 export KEYTIMEOUT=1
-
-
-function _fgnd() {
-    BUFFER="fgnd"
-    zle accept-line
-}
-
-zle -N _fgnd
-
-bindkey "^f" _fgnd
 
 function activate() {
    source $1/bin/activate
@@ -104,6 +90,24 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
+# enable cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+zstyle ':completion:*' list-dirs-first 'yes'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:descriptions' format ' %B%F{yellow}-- %d --%f%b'
+zstyle ':completion:*:corrections' format ' %B%F{green}-- %d (errors: %e) --%f%b'
+zstyle ':completion:*:messages' format ' %B%F{purple} -- %d --%f%b'
+zstyle ':completion:*:warnings' format ' %B%F{red}-- no matches found --%f%b'
+zstyle ':completion:*' verbose yes
+
+# enable fuzzy matching when completing
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
-export HUNTER_ROOT="${HOME}/.hunter"
