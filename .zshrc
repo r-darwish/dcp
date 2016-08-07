@@ -11,8 +11,11 @@ source ~/.zplug/zplug
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    alias ls="gls --color=auto --group-directories-first -lFhX"
+else
+    alias ls="ls --color=auto --group-directories-first -lFhX"
+fi
 
 HISTSIZE=1000
 SAVEHIST=1000
