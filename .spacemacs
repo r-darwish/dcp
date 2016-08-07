@@ -251,6 +251,8 @@ layers configuration. You are free to put any user code."
   (add-hook 'text-mode-hook (lambda () (flyspell-mode t)))
   (plist-put (cdr (assoc "*compilation*" popwin:special-display-config))
              :height 0.33)
+  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
