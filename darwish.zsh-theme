@@ -101,7 +101,7 @@ prompt_lean_setup() {
     zstyle ':vcs_info:git*' formats ' %b'
     zstyle ':vcs_info:git*' actionformats ' %b|%a'
 
-    [[ "$SSH_CONNECTION" != '' ]] && prompt_lean_host="%F{yellow}%m%f "
+    [[ "$SSH_CONNECTION" != '' ]] && prompt_lean_host="%F{green}%m%f "
     [[ "$TMUX" != '' ]] && prompt_lean_tmux=$PROMPT_LEAN_TMUX
 }
 
