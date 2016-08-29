@@ -228,6 +228,7 @@ layers configuration. You are free to put any user code."
   (add-to-list 'auto-mode-alist '("\\.pylintrc\\'" . conf-mode))
   (add-to-list 'auto-mode-alist '("slashrc\\'" . python-mode))
   (add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode))
+  (add-to-list 'auto-mode-alist '("\\.docker\\'" . dockerfile-mode))
   (setq-default js2-basic-offset 2
                 css-indent-offset 2
                 c-basic-offset 4
