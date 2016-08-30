@@ -8,7 +8,7 @@ then
 fi
 
 bindkey -e
-source ~/.zplug/init.zsh
+source "$HOME/.zplug/init.zsh"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
@@ -40,7 +40,6 @@ else
     }
 
     fasd_cache="$HOME/.fasd-init-zsh"
-    source "$HOME/.zplug/init.zsh"
     zplug clvv/fasd, \
           as:command, \
           hook-build:"./fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| $fasd_cache"
