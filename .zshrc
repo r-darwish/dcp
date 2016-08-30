@@ -8,7 +8,7 @@ then
 fi
 
 bindkey -e
-source ~/.zplug/zplug
+source ~/.zplug/init.zsh
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
