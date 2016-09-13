@@ -114,3 +114,5 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+WORDCHARS=${WORDCHARS//\/}
