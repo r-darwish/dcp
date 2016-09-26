@@ -252,7 +252,7 @@ layers configuration. You are free to put any user code."
     'spacemacs/goto-last-searched-ahs-symbol)
   (add-hook 'text-mode-hook (lambda () (flyspell-mode t)))
   (plist-put (cdr (assoc "*compilation*" popwin:special-display-config))
-             :height 0.33)
+             :height 0.25)
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
   (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
   )
