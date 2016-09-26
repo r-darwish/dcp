@@ -61,7 +61,7 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(anaconda-mode)
+   dotspacemacs-excluded-packages '(anaconda-mode smartparens)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -218,7 +218,6 @@ layers configuration. You are free to put any user code."
   (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
   (global-flycheck-mode t)
   (global-git-commit-mode t)
-  (spacemacs/toggle-smartparens-globally-off)
   (company-statistics-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
   (add-hook 'python-mode-hook (lambda ()
@@ -239,9 +238,6 @@ layers configuration. You are free to put any user code."
                 git-messenger:show-detail t
                 vc-follow-symlinks t
                 web-mode-markup-indent-offset 2
-                sp-highlight-pair-overlay nil
-                sp-autoinsert-pair nil
-                sp-autoescape-string-quote nil
                 tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='~/.ssh/%%r@%%h:%%p' -o ControlPersist=1m"
                 magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
   (fset 'evil-visual-update-x-selection 'ignore)
