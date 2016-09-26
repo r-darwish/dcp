@@ -51,7 +51,7 @@ values."
      (spell-checking :variables spell-checking-enable-by-default nil)
      (shell :variables shell-default-shell 'eshell)
      colors
-     (syntax-checking :variables syntax-checking-enable-tooltips nil)
+     syntax-checking
      (version-control :variables
                       version-control-diff-tool 'diff-hl)
      )
