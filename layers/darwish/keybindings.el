@@ -10,6 +10,8 @@
   "pr" 'projectile-rebuild-project
   "pg" 'projectile-switch-to-git
   "ps" 'projectile-switch-and-search
+  "pp" 'projectile-switch-project
+  "jt" 'avy-goto-char-2
   "glp" 'project-git)
 
 (spacemacs/set-leader-keys "ag"
