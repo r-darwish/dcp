@@ -32,6 +32,7 @@ else
     zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
     export FZF_COMPLETION_TRIGGER="~~"
     export FZF_DEFAULT_COMMAND='ag -g ""'
+    export FZF_DEFAULT_OPTS="-e"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fasd -Rdl"
     alias fzfag="ag --nobreak --nonumbers --noheading . | fzf-tmux"
