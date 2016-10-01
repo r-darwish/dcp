@@ -12,6 +12,7 @@
   "ps" 'projectile-switch-and-search
   "pp" 'projectile-switch-project
   "jt" 'avy-goto-char-2
+  "qf" 'delete-frame
   "glp" 'project-git)
 
 (spacemacs/set-leader-keys "ag"
