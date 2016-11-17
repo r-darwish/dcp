@@ -1,3 +1,5 @@
+[core]
+    excludesfile = ~/.gitignore_global
 [user]
     signingkey = 929D1C60
 [alias]
