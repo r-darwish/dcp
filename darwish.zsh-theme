@@ -1,108 +1,86 @@
-# lean prompt theme
-# by Miek Gieben: https://github.com/miekg/lean
-#
-# Base on Pure by Sindre Sorhus: https://github.com/sindresorhus/pure
-#
-# MIT License
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=blue,bold'
 
-PROMPT_LEAN_PATH_PERCENT=${PROMPT_LEAN_PATH_PERCENT-60}
+autoload -Uz vcs_info
+autoload -U add-zsh-hook
+setopt prompt_subst
 
-prompt_lean_venv_info() {
+
+zstyle ':vcs_info:*' enable git hg svn cvs
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr		'%F{green}✱'
+zstyle ':vcs_info:*' unstagedstr	'%F{red}✱'
+zstyle ':vcs_info:*' branchformat	'%b%%b%f:%B%F{yellow}%r'
+zstyle ':vcs_info:*' formats		'%F{magenta}(%F{white}%b%c%u%m%F{magenta}) '
+zstyle ':vcs_info:*' actionformats	'%F{magenta}(%F{white}%b%c%u%m%F{magenta}|%F{red}%a%F{magenta}) '
+zstyle ':vcs_info:*+set-message:*' hooks set-message
+zstyle ':vcs_info:*+no-vcs:*' hooks no-vcs
+
+typeset -gA vcs_prompt_chars
+vcs_prompt_chars=(
+    'git' '%F{red}⚡'
+)
+
++vi-no-vcs() {
+    _prompt_char=''
+}
+
++vi-set-message() {
+    _prompt_char=$vcs_prompt_chars[$vcs]
+
+    case ${vcs} in
+        git)
+            # Show +N/-N when your local branch is ahead-of or behind remote HEAD.
+            local ahead behind
+            local -a gitstatus
+
+            ahead=$(git rev-list --count ${hook_com[branch]}@{upstream}..@ 2>/dev/null)
+            (( $ahead )) && gitstatus+=( "%F{green}⇡${ahead}" )
+
+            behind=$(git rev-list --count @..${hook_com[branch]}@{upstream} 2>/dev/null)
+            (( $behind )) && gitstatus+=( "%F{red}⇣${behind}" )
+
+            (( ${#gitstatus} )) && hook_com[misc]+="%F{magenta}|%b${(@j:%F{white\}/:)gitstatus}%B"
+            ;;
+
+    esac
+}
+
+_venv_info() {
     if [[ -z ${VIRTUAL_ENV} ]]; then
-        return
+        _venv_prompt=''
+        return;
     fi
-
     local -a venv_list
     venv_list=("${(@s:/:)${VIRTUAL_ENV}}")
     local venv=${venv_list[-1]}
     if [[ ${venv} == ".env" ]]; then
         venv=${venv_list[-2]}
     fi
-    echo " %F{yellow}${venv}"
+    _venv_prompt="%F{magenta}venv:(%F{white}${venv}%F{magenta}) "
 }
 
-# turns seconds into human readable time, 165392 => 1d 21h 56m 32s
-prompt_lean_human_time() {
-    local tmp=$1
-    local days=$(( tmp / 60 / 60 / 24 ))
-    local hours=$(( tmp / 60 / 60 % 24 ))
-    local minutes=$(( tmp / 60 % 60 ))
-    local seconds=$(( tmp % 60 ))
-    (( $days > 0 )) && echo -n "${days}d "
-    (( $hours > 0 )) && echo -n "${hours}h "
-    (( $minutes > 0 )) && echo -n "${minutes}m "
-    echo "${seconds}s "
-}
-
-# fastest possible way to check if repo is dirty
-prompt_lean_git_dirty() {
-    # check if we're in a git repo
-    command git rev-parse --is-inside-work-tree &>/dev/null || return
-    # check if it's dirty
-    local umode="-uno" #|| local umode="-unormal"
-    command test -n "$(git status --porcelain --ignore-submodules ${umode} 2>/dev/null | head -100)"
-
-    (($? == 0)) && echo ' +'
-}
-
-# displays the exec time of the last command if set threshold was exceeded
-prompt_lean_cmd_exec_time() {
-    local stop=$EPOCHSECONDS
-    local start=${cmd_timestamp:-$stop}
-    integer elapsed=$stop-$start
-    (($elapsed > ${PROMPT_LEAN_CMD_MAX_EXEC_TIME:=5})) && prompt_lean_human_time $elapsed
-}
-
-prompt_lean_preexec() {
-    cmd_timestamp=$EPOCHSECONDS
-}
-
-prompt_lean_pwd() {
-    local lean_path="`print -Pn '%~'`"
-    if (($#lean_path / $COLUMNS.0 * 100 > ${PROMPT_LEAN_PATH_PERCENT:=60})); then
-        print -Pn '...%2/'
-        return
+function zle-line-init zle-keymap-select {
+    if [[ ${KEYMAP} == "main" ]]; then
+        _vim_prompt="%F{green}● "
+    else
+        _vim_prompt="%F{yellow}● "
     fi
-    print "$lean_path"
+    zle reset-prompt
 }
+zle -N zle-line-init
+zle -N zle-keymap-select
 
-prompt_lean_precmd() {
-    vcs_info
-    rehash
+add-zsh-hook precmd vcs_info
+add-zsh-hook precmd _venv_info
 
-    local jobs
-    local prompt_lean_jobs
-    unset jobs
-    for a (${(k)jobstates}) {
-        j=$jobstates[$a];i="${${(@s,:,)j}[2]}"
-        jobs+=($a${i//[^+-]/})
-    }
-    # print with [ ] and comma separated
-    prompt_lean_jobs=""
-    [[ -n $jobs ]] && prompt_lean_jobs="%F{242}["${(j:,:)jobs}"] "
-
-    PROMPT="$prompt_lean_jobs%F{yellow}$prompt_lean_host%(?.%F{blue}.%B%F{red})%#%f%b "
-    RPROMPT="%F{yellow}`prompt_lean_cmd_exec_time`%f%F{blue}`prompt_lean_pwd`%F{242}$vcs_info_msg_0_`prompt_lean_git_dirty``prompt_lean_venv_info`%f"
-
-    unset cmd_timestamp # reset value since `preexec` isn't always triggered
-}
-
-prompt_lean_setup() {
-    prompt_opts=(cr subst percent)
-
-    zmodload zsh/datetime
-    autoload -Uz add-zsh-hook
-    autoload -Uz vcs_info
-
-    add-zsh-hook precmd prompt_lean_precmd
-    add-zsh-hook preexec prompt_lean_preexec
-
-    zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:git*' formats ' %b'
-    zstyle ':vcs_info:git*' actionformats ' %b|%a'
-
-    [[ "$SSH_CONNECTION" != '' ]] && prompt_lean_host="%F{green}%m%f "
-    [[ "$TMUX" != '' ]] && prompt_lean_tmux=$PROMPT_LEAN_TMUX
-}
-
-prompt_lean_setup "$@"
+if [[ -n $SSH_CLIENT || $EUID -eq 0 ]]; then
+    PROMPT_HOST='%F{magenta}%n@%m%f'
+fi
+PROMPT='%B${PROMPT_HOST}%(?.%F{green}✔.%F{red}✘) %F{red}❯%F{yellow}❯%F{green}❯%b%f%k '
+RPROMPT='%B${_prompt_char}${vcs_info_msg_0_}${_venv_prompt}%F{blue}%1~'
+SPROMPT="zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? "
