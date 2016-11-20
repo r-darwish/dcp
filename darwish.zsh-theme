@@ -61,7 +61,7 @@ _venv_info() {
     if [[ ${venv} == ".env" ]]; then
         venv=${venv_list[-2]}
     fi
-    _venv_prompt="%F{magenta}venv:(%F{white}${venv}%F{magenta}) "
+    _venv_prompt="%F{yellow}λ %F{magenta}(%F{white}${venv}%F{magenta}) "
 }
 
 function zle-line-init zle-keymap-select {
