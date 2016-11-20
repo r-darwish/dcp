@@ -59,7 +59,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(mode-icons)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(anaconda-mode smartparens)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -251,6 +251,7 @@ layers configuration. You are free to put any user code."
              :height 0.25)
   (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
   (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
+  (mode-icons-mode t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
