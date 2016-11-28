@@ -1,4 +1,4 @@
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
@@ -64,16 +64,6 @@ _venv_info() {
     _venv_prompt="%F{yellow}λ %F{magenta}(%F{white}${venv}%F{magenta}) "
 }
 
-function zle-line-init zle-keymap-select {
-    if [[ ${KEYMAP} == "main" ]]; then
-        _vim_prompt="%F{green}● "
-    else
-        _vim_prompt="%F{yellow}● "
-    fi
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
 
 add-zsh-hook precmd vcs_info
 add-zsh-hook precmd _venv_info
