@@ -18,13 +18,14 @@ else
     alias ls="ls --color=auto --group-directories-first -lFhX"
 fi
 
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=20000
 HISTFILE=~/.zsh_history
 
 # zplug plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "chrissicool/zsh-256color"
+zplug "zsh-users/zsh-completions"
 if [[ -n ${ANDROID_ROOT} ]] ; then
     alias ai="apt install"
 else
