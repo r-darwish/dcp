@@ -29,7 +29,6 @@ zplug "zsh-users/zsh-completions"
 if [[ -n ${ANDROID_ROOT} ]] ; then
     alias ai="apt install"
 else
-    zplug "plugins/ssh-agent", from:oh-my-zsh, if:"which ssh-agent"
     zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
     export FZF_COMPLETION_TRIGGER="~~"
     export FZF_DEFAULT_COMMAND='ag -g ""'
