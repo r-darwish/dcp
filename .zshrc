@@ -59,6 +59,11 @@ unset fasd_cache
 
 unset zle_bracketed_paste
 
+function t()
+{
+    tmux new-session -A -s ${1:=main}
+}
+
 alias lenv='activate .env'
 alias pac=pacaur
 alias gf=git-flow
