@@ -29,9 +29,9 @@ values."
      darwish
      ansible
      (auto-completion :variables
-                       auto-completion-private-snippets-directory dcp-snippet-dir
-                       auto-completion-complete-with-key-sequence-delay 0.0
-                       auto-completion-enable-snippets-in-popup t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-private-snippets-directory dcp-snippet-dir
+                      auto-completion-enable-snippets-in-popup t)
      emacs-lisp
      (go :variables go-tab-width 4)
      restclient
@@ -59,9 +59,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(mode-icons)
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(anaconda-mode smartparens)
+   dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -83,7 +83,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -100,14 +100,15 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(sanityinc-tomorrow-night)
+   dotspacemacs-themes '(spacemacs-dark sanityinc-tomorrow-night)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Inconsolata"
-                               :size 14
-                               :weight normal
+
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 13
+                               :weight semibold
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -218,7 +219,6 @@ layers configuration. You are free to put any user code."
   (add-hook 'text-mode-hook 'turn-on-evil-mc-mode)
   (global-flycheck-mode t)
   (global-git-commit-mode t)
-  (company-statistics-mode t)
   (add-to-list 'yas-snippet-dirs dcp-snippet-dir)
   (add-hook 'python-mode-hook (lambda ()
                                 (pyvenv-tracking-mode t)))
@@ -244,14 +244,9 @@ layers configuration. You are free to put any user code."
   (add-hook 'c-mode-common-hook (lambda ()
                                   (c-set-offset 'innamespace 0)))
   (spacemacs/toggle-mode-line-minor-modes-off)
-  (define-key evil-normal-state-map (kbd "!")
-    'spacemacs/goto-last-searched-ahs-symbol)
   (add-hook 'text-mode-hook (lambda () (flyspell-mode t)))
   (plist-put (cdr (assoc "*compilation*" popwin:special-display-config))
              :height 0.25)
-  (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
-  (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
-  (mode-icons-mode t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
