@@ -21,13 +21,13 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      darwish
-     ansible
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-private-snippets-directory dcp-snippet-dir
@@ -49,11 +49,9 @@ values."
      c-c++
      systemd
      (spell-checking :variables spell-checking-enable-by-default nil)
-     (shell :variables shell-default-shell 'eshell)
      colors
      syntax-checking
-     (version-control :variables
-                      version-control-diff-tool 'diff-hl)
+     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -83,7 +81,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
