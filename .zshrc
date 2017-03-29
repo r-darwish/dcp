@@ -23,13 +23,13 @@ SAVEHIST=20000
 HISTFILE=~/.zsh_history
 
 # zplug plugins
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "chrissicool/zsh-256color"
 zplug "zsh-users/zsh-completions"
 if [[ -n ${ANDROID_ROOT} ]] ; then
     alias ai="apt install"
 else
-    zplug "junegunn/fzf", use:"shell/*.zsh", nice:10
+    zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
     export FZF_COMPLETION_TRIGGER="~~"
     export FZF_DEFAULT_COMMAND='ag -g ""'
     export FZF_DEFAULT_OPTS="-e"
