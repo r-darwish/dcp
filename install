@@ -22,6 +22,10 @@ _ZPLUG = _home('.zplug')
 _TMUX = _home('.tmux.conf')
 _TPM = _home('.tmux/plugins/tpm')
 _PYLINTRC = _home('.pylintrc')
+_I3_BASE = _home('.config/i3')
+_I3 = os.path.join(_I3_BASE, 'config')
+_TERMINATOR_BASE = _home('.config/terminator')
+_TERMINATOR = os.path.join(_TERMINATOR_BASE, 'config')
 _NEOBUNDLE_BASE = _home('.vim', 'bundle')
 _NEOBUNDLE_PATH = os.path.join(_NEOBUNDLE_BASE, 'neobundle.vim')
 _VIMRC = _home('.vimrc')
@@ -81,6 +85,11 @@ def main():
     _symlink(_dcp_dir('.pylintrc'), _PYLINTRC)
     _symlink(_dcp_dir('gitignore_global'), _GLOBAL_GITIGNORE)
 
+    _ensure_dir(_I3_BASE)
+    _symlink(_dcp_dir('i3-config'), _I3)
+
+    _ensure_dir(_TERMINATOR_BASE)
+    _symlink(_dcp_dir('terminator-config'), _TERMINATOR)
 
 
 if __name__ == "__main__":
