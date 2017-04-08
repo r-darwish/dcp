@@ -45,6 +45,7 @@ values."
      org
      github
      markdown
+     evil-snipe
      rust
      c-c++
      systemd
