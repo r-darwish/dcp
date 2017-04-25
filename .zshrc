@@ -74,7 +74,9 @@ alias ect='emacsclient -t'
 alias cmk="ssh -O stop"
 alias jc=journalctl
 alias sc="sudo systemctl"
+alias scu="systemctl --user"
 alias scdr="sudo systemctl daemon-reload"
+alias pip="python -m pip"
 unalias ag 2>/dev/null
 
 export KEYTIMEOUT=1
